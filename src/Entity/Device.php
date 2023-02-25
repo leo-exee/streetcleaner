@@ -18,13 +18,13 @@ class Device
     private ?string $device = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $adress = null;
+    public ?string $adress = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2, nullable: true)]
-    private ?string $temperature = null;
+    public ?string $temperature = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2, nullable: true)]
-    private ?string $humidity = null;
+    public ?string $humidity = null;
 
     #[ORM\ManyToOne(inversedBy: 'devices')]
     private ?User $user = null;

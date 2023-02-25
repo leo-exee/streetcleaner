@@ -1,6 +1,40 @@
 <nav>
-    <ul>
-        <li>Participer</li>
-        <li>Se déconnecter</li>
-    </ul>
+    <div class="container">
+        <a href="{{ path('app_index') }}">
+            <img src="" alt="Logo">
+        </a>
+        <ul class="menu">
+            {% if is_granted('ROLE_USER') %}
+                <li class="menu-item">
+                    <a href="#">
+                        <i class="fa-solid fa-circle-plus"></i> Rejoindre
+                    </a>
+                </li>
+                <li>|</li>
+                <li class="menu-item">
+                    <a href="#">
+                        <i style="margin-right: 0" class="fa-solid fa-circle-user"></i>
+                    </a>
+                </li>
+                <li>|</li>
+                <li class="menu-item">
+                    <a href="{{ path('app_logout') }}">
+                        <i class="fa-solid fa-right-from-bracket"></i> Deconnexion
+                    </a>
+                </li>
+            {% else %}
+                <li class="menu-item">
+                    <a href="#">
+                        <i class="fa-solid fa-circle-plus"></i> Rejoindre
+                    </a>
+                </li>
+                <li>|</li>
+                <li class="menu-item">
+                    <a href="{{ path('app_login') }}">
+                        <i class="fa-solid fa-right-to-bracket"></i> Connexion
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
 </nav>

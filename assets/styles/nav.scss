@@ -1,0 +1,51 @@
+@use 'variable';
+
+nav {
+  display: flex;
+  justify-content: center;
+  background: variable.$primary;
+  background-size: 75px;
+  color: #fff;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  left: 0;
+  .container {
+    width: 100%;
+    max-width: 1140px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .menu {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+    .menu-link {
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+  }
+  .menu-item {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: white;
+      text-align: right;
+      font-weight: 500;
+    }
+  }
+}
