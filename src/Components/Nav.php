@@ -4,7 +4,7 @@ namespace App\Components;
 use App\Entity\User;
 use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
 
-#[AsTwigComponent('nav')]
+#[AsTwigComponent('Nav')]
 class Nav
 {
     public user $user;
