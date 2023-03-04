@@ -3,32 +3,49 @@
 {% block title %}User{% endblock %}
 
 {% block body %}
-    <h1>User</h1>
+    <div class="container">
+        <h1>User</h1>
 
-    <table class="table">
-        <tbody>
+        <span>Email</span>
+        <span>{{ user.email }}</span>
+
+        <table class="table">
+            <thead>
             <tr>
                 <th>Id</th>
-                <td>{{ user.id }}</td>
+                <th>Device</th>
+                <th>Adress</th>
+                <th>Temperature</th>
+                <th>Humidity</th>
+                <th>actions</th>
             </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ user.email }}</td>
-            </tr>
-            <tr>
-                <th>Roles</th>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-            </tr>
-            <tr>
-                <th>Password</th>
-                <td>{{ user.password }}</td>
-            </tr>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {% for device in devices %}
+                <tr>
+                    <td>{{ device.id }}</td>
+                    <td>{{ device.device }}</td>
+                    <td>{{ device.adress }}</td>
+                    <td>{{ device.temperature }}</td>
+                    <td>{{ device.humidity }}</td>
+                    <td>
+                        <a href="{{ path('app_device_edit', {'id': device.id}) }}">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
 
-    <a href="{{ path('app_index') }}">Retour à la liste</a>
+        <a class="btn primary" href="{{ path('app_device_new') }}">Ajouter un appareil</a>
 
-    <a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
+        <a class="btn secondary" href="{{ path('app_index') }}">Retour à la liste</a>
 
-    {{ include('user/_delete_form.html.twig') }}
+        <a class="btn primary" href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier vos informations</a>
+
+        {{ include('user/_delete_form.html.twig') }}
+    </div>
 {% endblock %}

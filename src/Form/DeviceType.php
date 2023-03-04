@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Device;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -14,9 +15,8 @@ class DeviceType extends AbstractType
         $builder
             ->add('device')
             ->add('adress')
-            ->add('temperature')
-            ->add('humidity')
-            ->add('user')
+            ->add('temperature', HiddenType::class)
+            ->add('humidity', HiddenType::class)
         ;
     }
 

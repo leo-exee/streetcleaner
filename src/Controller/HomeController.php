@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller;
 
+use App\Entity\Device;
 use App\Repository\DeviceRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -72,5 +73,10 @@ class HomeController extends AbstractController
         [
             'items' => $averages,
         ]);
+    }
+
+    #[Route('/detail/{address}')]
+    public function addressDetail(Device $device){
+        return $this->render('detail.html.twig',);
     }
 }

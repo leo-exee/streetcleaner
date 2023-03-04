@@ -2,8 +2,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 
 $primary : #44bd32;
-$secondary : #00a8ff;
+$secondary : #7fdd6d;
 
 $danger : #e84118;
 $warning : #fbc531;
 
+.primary {
+  background: $primary;
+  color: #fff;
+}
+
+.secondary {
+  background: $secondary;
+  color: #fff;
+}
+
+.danger {
+  background: $danger;
+  color: #fff;
+}
+
+.warning {
+  background: $warning;
+  color: #000;
+}

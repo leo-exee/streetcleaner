@@ -16,63 +16,93 @@ class DeviceController extends AbstractController
     #[Route('/', name: 'app_device_index', methods: ['GET'])]
     public function index(DeviceRepository $deviceRepository): Response
     {
-        return $this->render('device/index.html.twig', [
-            'devices' => $deviceRepository->findAll(),
-        ]);
+        $securityContext = $this->container->get('security.authorization_checker');
+        if($securityContext->isGranted('ROLE_ADMIN')){
+            return $this->render('device/index.html.twig', [
+                'devices' => $deviceRepository->findAll(),
+            ]);
+        }
+        return $this->redirectToRoute('app_index', [], Response::HTTP_SEE_OTHER);
+
     }
 
     #[Route('/new', name: 'app_device_new', methods: ['GET', 'POST'])]
     public function new(Request $request, DeviceRepository $deviceRepository): Response
     {
-        $device = new Device();
-        $form = $this->createForm(DeviceType::class, $device);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $deviceRepository->save($device, true);
+        $securityContext = $this->container->get('security.authorization_checker');
+        if($securityContext->isGranted('ROLE_USER')){
+            $device = new Device();
+            $form = $this->createForm(DeviceType::class, $device);
+            $form->handleRequest($request);
 
-            return $this->redirectToRoute('app_device_index', [], Response::HTTP_SEE_OTHER);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $device->setUser($this->getUser());
+
+                $deviceRepository->save($device, true);
+
+                return $this->redirectToRoute('app_device_edit', ['id' => $device->getId()], Response::HTTP_SEE_OTHER);
+            }
+
+            return $this->renderForm('device/new.html.twig', [
+                'device' => $device,
+                'form' => $form,
+            ]);
         }
+        return $this->redirectToRoute('app_index', [], Response::HTTP_SEE_OTHER);
 
-        return $this->renderForm('device/new.html.twig', [
-            'device' => $device,
-            'form' => $form,
-        ]);
     }
 
     #[Route('/{id}', name: 'app_device_show', methods: ['GET'])]
     public function show(Device $device): Response
     {
-        return $this->render('device/show.html.twig', [
-            'device' => $device,
-        ]);
+        $securityContext = $this->container->get('security.authorization_checker');
+        if($securityContext->isGranted('ROLE_ADMIN') || $device->getUser() === $this->getUser()){
+            return $this->render('device/show.html.twig', [
+                'device' => $device,
+            ]);
+        }
+        return $this->redirectToRoute('app_index', [], Response::HTTP_SEE_OTHER);
+
+
     }
 
     #[Route('/{id}/edit', name: 'app_device_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Device $device, DeviceRepository $deviceRepository): Response
     {
-        $form = $this->createForm(DeviceType::class, $device);
-        $form->handleRequest($request);
+        $securityContext = $this->container->get('security.authorization_checker');
+        if($securityContext->isGranted('ROLE_ADMIN') || $device->getUser() === $this->getUser()){
+            $form = $this->createForm(DeviceType::class, $device);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $deviceRepository->save($device, true);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $deviceRepository->save($device, true);
 
-            return $this->redirectToRoute('app_device_index', [], Response::HTTP_SEE_OTHER);
+            }
+
+            return $this->renderForm('device/edit.html.twig', [
+                'device' => $device,
+                'form' => $form,
+            ]);
         }
+        return $this->redirectToRoute('app_index', [], Response::HTTP_SEE_OTHER);
 
-        return $this->renderForm('device/edit.html.twig', [
-            'device' => $device,
-            'form' => $form,
-        ]);
+
     }
 
     #[Route('/{id}', name: 'app_device_delete', methods: ['POST'])]
     public function delete(Request $request, Device $device, DeviceRepository $deviceRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$device->getId(), $request->request->get('_token'))) {
-            $deviceRepository->remove($device, true);
-        }
+        $securityContext = $this->container->get('security.authorization_checker');
+        if($securityContext->isGranted('ROLE_ADMIN') || $device->getUser() === $this->getUser()){
 
-        return $this->redirectToRoute('app_device_index', [], Response::HTTP_SEE_OTHER);
+            if ($this->isCsrfTokenValid('delete'.$device->getId(), $request->request->get('_token'))) {
+                $deviceRepository->remove($device, true);
+            }
+
+            return $this->redirectToRoute('app_index', [], Response::HTTP_SEE_OTHER);
+        }
+        return $this->redirectToRoute('app_index', [], Response::HTTP_SEE_OTHER);
+
     }
 }
