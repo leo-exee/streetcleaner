@@ -4,25 +4,27 @@
 $primary : #44bd32;
 $secondary : #7fdd6d;
 
+$grey: #e2e2e2;
+
 $danger : #e84118;
 $warning : #fbc531;
 
 .primary {
-  background: $primary;
-  color: #fff;
+  background: $primary !important;
+  color: #fff !important;
 }
 
 .secondary {
-  background: $secondary;
-  color: #fff;
+  background: $secondary !important;
+  color: #fff !important;
 }
 
 .danger {
-  background: $danger;
-  color: #fff;
+  background: $danger !important;
+  color: #fff !important;
 }
 
 .warning {
-  background: $warning;
-  color: #000;
+  background: $warning !important;
+  color: #000 !important;
 }

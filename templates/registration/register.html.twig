@@ -3,15 +3,26 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
+    <div class="container">
+        <h1>Rejoindre l'aventure</h1>
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+        {{ form_start(registrationForm) }}
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+        {{ form_label(registrationForm.email) }}
+        {{ form_widget(registrationForm.email)}}
+
+        {{ form_label(registrationForm.plainPassword) }}
+        {{ form_widget(registrationForm.plainPassword) }}
+
+        <div class="condition">
+            {{ form_label(registrationForm.agreeTerms) }}
+            {{ form_widget(registrationForm.agreeTerms) }}
+        </div>
+
+        <div class="register">
+            <button class="btn primary" type="submit"><i class="fa-solid fa-right-to-bracket"></i> S'inscrire</button>
+        </div>
+
+        {{ form_end(registrationForm) }}
+    </div>
 {% endblock %}

@@ -75,8 +75,28 @@ class HomeController extends AbstractController
         ]);
     }
 
-    #[Route('/detail/{address}')]
-    public function addressDetail(Device $device){
-        return $this->render('detail.html.twig',);
+    #[Route('/detail/{address}', name: 'app_address_detail')]
+    public function addressDetail($address, DeviceRepository $deviceRepository){
+
+        $devices = $deviceRepository->findBy(['adress' => $address]);
+
+        $temperatures = array_map(function($device) {
+            return $device->getTemperature();
+        }, $devices);
+
+        $humidities = array_map(function($device) {
+            return $device->getHumidity();
+        }, $devices);
+
+        $temp = array_sum($temperatures) / count($temperatures);
+        $hum = array_sum($humidities) / count($humidities);
+
+        return $this->render('detail.html.twig',
+        [
+            'name' => $address,
+            'temp' => $temp,
+            'hum' => $hum,
+            'items' => $devices,
+        ]);
     }
 }
