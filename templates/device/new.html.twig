@@ -1,11 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Device{% endblock %}
+{% block title %}Ajouter un appareil{% endblock %}
 
 {% block body %}
-    <h1>Create new Device</h1>
-
-    {{ include('device/_form.html.twig') }}
-
-    <a href="{{ path('app_device_index') }}">back to list</a>
+    <div class="container">
+        <h1>Ajouter un appareil</h1>
+        {{ include('device/_form.html.twig') }}
+    </div>
 {% endblock %}

@@ -1,4 +1,10 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Enregistrer') }}</button>
+        {{ form_label(form.email) }}
+        {{ form_widget(form.email)}}
+
+        {{ form_label(form.password) }}
+        {{ form_widget(form.password)}}
+    <div class="save">
+        <button type="submit" class="btn secondary"><i class="fa-solid fa-floppy-disk"></i> {{ button_label|default('Enregistrer') }}</button>
+    </div>
 {{ form_end(form) }}

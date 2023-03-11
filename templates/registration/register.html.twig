@@ -12,7 +12,7 @@
         {{ form_widget(registrationForm.email)}}
 
         {{ form_label(registrationForm.plainPassword) }}
-        {{ form_widget(registrationForm.plainPassword) }}
+        {{ form_widget(registrationForm.plainPassword)}}
 
         <div class="condition">
             {{ form_label(registrationForm.agreeTerms) }}
@@ -20,7 +20,7 @@
         </div>
 
         <div class="register">
-            <button class="btn primary" type="submit"><i class="fa-solid fa-right-to-bracket"></i> S'inscrire</button>
+            <button class="btn secondary" type="submit"><i class="fa-solid fa-right-to-bracket"></i> S'inscrire</button>
         </div>
 
         {{ form_end(registrationForm) }}

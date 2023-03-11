@@ -9,7 +9,6 @@ use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/user')]
@@ -22,16 +21,32 @@ class UserController extends AbstractController
     {
         $securityContext = $this->container->get('security.authorization_checker');
         if($user === $this->getUser() || $securityContext->isGranted('ROLE_ADMIN')){
+
+            $devices = $deviceRepository->findBy(['user' => $user]);
+
+            $temperatures = array_map(function($device) {
+                return $device->getTemperature();
+            }, $devices);
+
+            $humidities = array_map(function($device) {
+                return $device->getHumidity();
+            }, $devices);
+
+            $temp = array_sum($temperatures) / count($temperatures);
+            $hum = array_sum($humidities) / count($humidities);
+
             return $this->render('user/show.html.twig', [
                 'user' => $user,
-                'devices' => $user->getDevices()
+                'devices' => $devices,
+                'temp' => $temp,
+                'hum' => $hum
             ]);
         }
         return $this->redirectToRoute('app_index', [], Response::HTTP_SEE_OTHER);
     }
 
     #[Route('/{id}/edit', name: 'app_user_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, User $user, UserRepository $userRepository, UserPasswordHasherInterface $passwordHasher): Response
+    public function edit(Request $request, User $user, UserRepository $userRepository): Response
     {
         $securityContext = $this->container->get('security.authorization_checker');
         if($user === $this->getUser() || $securityContext->isGranted('ROLE_ADMIN')){

@@ -8,37 +8,42 @@
     {{ parent() }}
 {% endblock %}
 
+{% block title %}{{ name }}{% endblock %}
+
 {% block body %}
     <div class="container">
 
-
-        <h1>Température : {{ temp }} °C</h1>
-        <h1>Humidité : {{ hum }} %</h1>
+        <h1>{{ name }}</h1>
+        <h2>Température : {{ temp }} °C</h2>
+        <h2>Humidité : {{ hum }} %</h2>
 
         <div class="list rank">
+
             <div class="item-header">
+
                 <div>
-                    <p>N°</p>
+                    <p>#</p>
+                </div>
+                <div>
                 </div>
                 <div class="center">
-                    <p>Température</p>
-                </div>
-                <div class="end">
-                    <p>Humidité</p>
+                    <p>Valeurs</p>
                 </div>
             </div>
             {% for item in items %}
                 <div class="item">
                     <div>
-                    <span>
-                        {{ loop.index }}
-                    </span>
+                            <span>
+                                {{ loop.index }}
+                            </span>
                     </div>
-                    <div class="center">
-                        <span>{{ item.temperature  ?? "??"}}°C</span>
+                    <div class="address">
                     </div>
-                    <div class="end">
-                        <span>{{ item.humidity  ?? "??"}}%</span>
+                    <div >
+                        <span>{{ item.temperature }}°C</span>
+                    </div>
+                    <div>
+                        <span>{{ item.humidity }} %</span>
                     </div>
                 </div>
             {% endfor %}

@@ -10,9 +10,15 @@
             <h2>Vos informations</h2>
         </div>
 
-        <p>Votre adresse email : <span>{{ user.email }}</span></p>
+        <div class="text">
+            <p>Votre adresse email : <span>{{ user.email }}</span></p>
 
-        <p>Nombre de station : <span>{{ user.devices|length }}</span></p>
+            <p>Nombre de station : <span>{{ user.devices|length }}</span></p>
+
+            <p>Moyenne de température : <span>{{ temp ?? "??" }}°C</span></p>
+
+            <p>Moyenne d'humidité : <span>{{ hum ?? "??" }} %</span></p>
+        </div>
 
         <div class="multi-btn">
             <a class="btn secondary" href="{{ path('app_user_edit', {'id': user.id}) }}"><i class="fa-solid fa-pen-to-square"></i> Modifier vos informations</a>
@@ -43,7 +49,7 @@
                             <span>{{ device.temperature ?? "??" }}°C</span>
                         </div>
                         <div>
-                            <span>{{ device.humidity ?? "??" }}%</span>
+                            <span>{{ device.humidity ?? "??" }} %</span>
                         </div>
                         <div>
                             <a class="btn-icon secondary" href="{{ path('app_device_edit', {'id': device.id}) }}"><i class="fa-solid fa-pen-to-square"></i></a>

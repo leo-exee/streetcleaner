@@ -3,8 +3,8 @@
 nav {
   display: flex;
   justify-content: center;
-  background: variable.$primary;
-  background-size: 75px;
+  background: url("../images/blue-background.svg") no-repeat center;
+  background-size: cover;
   color: #fff;
   width: 100%;
   position: sticky;
@@ -49,6 +49,15 @@ nav {
       color: white;
       text-align: right;
       font-weight: 500;
+    }
+  }
+}
+
+@media (max-width: 1140px) {
+  nav{
+    .container {
+      width: 90%;
+      max-width: 1140px;
     }
   }
 }

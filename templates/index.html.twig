@@ -8,6 +8,8 @@
     {{ parent() }}
 {% endblock %}
 
+{% block title %}Street Cleaner{% endblock %}
+
 {% block body %}
     <div class="container">
 
@@ -28,7 +30,7 @@
                         <div class="value">
                             <span>{{ item.temperature }}°C</span>
                             &nbsp;&&nbsp;
-                            <span>{{ item.humidity }}% d'humidité</span>
+                            <span>{{ item.humidity }} % d'humidité</span>
                         </div>
                     </div>
                 </div>
@@ -64,7 +66,7 @@
                             <span>{{ item.temperature }}°C</span>
                         </div>
                         <div>
-                            <span>{{ item.humidity }}%</span>
+                            <span>{{ item.humidity }} %</span>
                         </div>
                     </div>
                 {% endif %}
