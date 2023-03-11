@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}Se connecter{% endblock %}
 
 {% block body %}
 <div class="container">
@@ -15,8 +15,8 @@
             </div>
         {% endif %}
 
-        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-        <label for="inputEmail">Votre adress mail</label>
+        <h1 class="h3 mb-3 font-weight-normal">Bon retour parmis nous</h1>
+        <label for="inputEmail">Votre adresse mail</label>
         <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" placeholder="..." required autofocus>
         <label for="inputPassword">Votre mot de passe</label>
         <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" placeholder="..." required>
@@ -25,6 +25,7 @@
                value="{{ csrf_token('authenticate') }}"
         >
 
+        <p class="register-link">Vous n'êtes pas inscrits ? Alors <a href="{{path('app_register')}}">rejoignez-nous</a></p>
         {#
         Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
         See https://symfony.com/doc/current/security/remember_me.html

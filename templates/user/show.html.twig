@@ -1,51 +1,62 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}User{% endblock %}
+{% block title %}Votre compte{% endblock %}
 
 {% block body %}
     <div class="container">
-        <h1>User</h1>
+        <h1>Votre compte</h1>
 
-        <span>Email</span>
-        <span>{{ user.email }}</span>
+        <div class="title">
+            <h2>Vos informations</h2>
+        </div>
 
-        <table class="table">
-            <thead>
-            <tr>
-                <th>Id</th>
-                <th>Device</th>
-                <th>Adress</th>
-                <th>Temperature</th>
-                <th>Humidity</th>
-                <th>actions</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for device in devices %}
-                <tr>
-                    <td>{{ device.id }}</td>
-                    <td>{{ device.device }}</td>
-                    <td>{{ device.adress }}</td>
-                    <td>{{ device.temperature }}</td>
-                    <td>{{ device.humidity }}</td>
-                    <td>
-                        <a href="{{ path('app_device_edit', {'id': device.id}) }}">edit</a>
-                    </td>
-                </tr>
+        <p>Votre adresse email : <span>{{ user.email }}</span></p>
+
+        <p>Nombre de station : <span>{{ user.devices|length }}</span></p>
+
+        <div class="multi-btn">
+            <a class="btn secondary" href="{{ path('app_user_edit', {'id': user.id}) }}"><i class="fa-solid fa-pen-to-square"></i> Modifier vos informations</a>
+            {{ include('user/_delete_form.html.twig') }}
+        </div>
+
+        <div class="title">
+            <h2>Vos appareils</h2>
+            <a class="btn secondary" href="{{ path('app_device_new') }}"><i class="fa-solid fa-plus"></i> Ajouter un appareil</a>
+        </div>
+
+        <div class="list">
+            {% if devices|length > 0 %}
+                {% for device in devices %}
+                    <div class="item device">
+                        <div>
+                            <span>
+                                {{ loop.index }}
+                            </span>
+                        </div>
+                        <div class="address">
+                            <p>{{ device.device }}<p>
+                        </div>
+                        <div class="address">
+                            <a href="{{ path('app_address_detail', {'address' : device.adress}) }}">{{ device.adress }} <i class="fa-solid fa-magnifying-glass"></i></a>
+                        </div>
+                        <div >
+                            <span>{{ device.temperature ?? "??" }}°C</span>
+                        </div>
+                        <div>
+                            <span>{{ device.humidity ?? "??" }}%</span>
+                        </div>
+                        <div>
+                            <a class="btn-icon secondary" href="{{ path('app_device_edit', {'id': device.id}) }}"><i class="fa-solid fa-pen-to-square"></i></a>
+                        </div>
+                        <div>
+                            {{ include('device/_delete_form.html.twig') }}
+                        </div>
+                    </div>
+                {% endfor %}
             {% else %}
-                <tr>
-                    <td colspan="6">no records found</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+                Vous n'avez pas d'appareil
+            {% endif %}
+        </div>
 
-        <a class="btn primary" href="{{ path('app_device_new') }}">Ajouter un appareil</a>
-
-        <a class="btn secondary" href="{{ path('app_index') }}">Retour à la liste</a>
-
-        <a class="btn primary" href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier vos informations</a>
-
-        {{ include('user/_delete_form.html.twig') }}
     </div>
 {% endblock %}

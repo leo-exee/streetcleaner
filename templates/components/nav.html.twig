@@ -4,13 +4,13 @@
             <img src="" alt="Logo">
         </a>
         <ul class="menu">
+            <li class="menu-item">
+                <a href="#">
+                    <i class="fa-solid fa-info"></i> En savoir plus
+                </a>
+            </li>
+            <li>|</li>
             {% if is_granted('ROLE_USER') %}
-                <li class="menu-item">
-                    <a href="#">
-                        <i class="fa-solid fa-circle-plus"></i> Rejoindre
-                    </a>
-                </li>
-                <li>|</li>
                 <li class="menu-item">
                     <a href="{{ path('app_user_show', { 'id': app.user.id }) }}">
                         <i style="margin-right: 0" class="fa-solid fa-circle-user"></i>
@@ -23,12 +23,6 @@
                     </a>
                 </li>
             {% else %}
-                <li class="menu-item">
-                    <a href="#">
-                        <i class="fa-solid fa-circle-plus"></i> Rejoindre
-                    </a>
-                </li>
-                <li>|</li>
                 <li class="menu-item">
                     <a href="{{ path('app_login') }}">
                         <i class="fa-solid fa-right-to-bracket"></i> Connexion

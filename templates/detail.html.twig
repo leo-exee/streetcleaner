@@ -15,7 +15,7 @@
         <h1>Température : {{ temp }} °C</h1>
         <h1>Humidité : {{ hum }} %</h1>
 
-        <div class="list">
+        <div class="list rank">
             <div class="item-header">
                 <div>
                     <p>N°</p>
@@ -35,10 +35,10 @@
                     </span>
                     </div>
                     <div class="center">
-                        <span>{{ item.temperature }}°C</span>
+                        <span>{{ item.temperature  ?? "??"}}°C</span>
                     </div>
                     <div class="end">
-                        <span>{{ item.humidity }}%</span>
+                        <span>{{ item.humidity  ?? "??"}}%</span>
                     </div>
                 </div>
             {% endfor %}

@@ -2,16 +2,25 @@
 @use 'nav';
 
 * {
-  font-family: 'quicksand', sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
+
+  p {
+    margin: 0;
+  }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'anton', sans-serif;
+    font-family: 'quicksand', sans-serif;
+    color: variable.$secondary;
     margin: 0;
   }
 
   i {
     margin-right: 5px;
   }
+}
+
+*:focus {
+  outline: none;
 }
 
 body {
@@ -25,49 +34,72 @@ body {
 
 .btn {
   cursor: pointer;
-  font-size: 18px;
+  font-size: 16px;
   border: none;
   text-decoration: none;
   padding: 10px 15px;
   font-weight: 600;
   border-radius: 50px;
+  font-family: 'quicksand', sans-serif;
+}
+
+.btn-icon {
+  i {
+    margin: 0;
+  }
+  border: none;
+  display: flex;
+  height: 30px;
+  width: 30px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
 }
 
 
 .container {
   width: 100%;
   max-width: 1140px;
-  margin: 10px auto;
+  margin: 25px auto;
+
+  .title {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 3px solid variable.$grey;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .multi-btn {
+    display: flex;
+    justify-content: space-between;
+  }
 
   .item-header {
-    height: 25px;
+    margin-top: 30px;
     display: grid;
-    grid-template-columns: 1fr repeat(3, 8fr);
+    grid-template-columns: 1fr 28fr 8fr;
+    grid-column-gap: 10px;
     justify-items: center;
-    margin-top: 10px;
-    padding: 10px;
-    border-radius: 50px;
+    padding: 25px 20px 10px 20px;
+    border-top: 3px solid variable.$grey;
 
     div {
       display: flex;
       width: 100%;
 
       p {
-        font-weight: 600;
+        font-family: 'quicksand', sans-serif;
+        font-weight: 900;
         width: 100%;
-        max-width: 250px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        margin: 0;
       }
     }
 
     .center {
-      justify-content: center !important;
-    }
-
-    .end {
-      justify-content: flex-end !important;
+      text-align: center;
     }
   }
 
@@ -77,6 +109,17 @@ body {
     grid-template-columns: repeat(3, 1fr);
     align-items: end;
 
+    h2 {
+      text-align: center;
+      a {
+        text-transform: uppercase;
+        text-decoration: none;
+        color: variable.$primary;
+        font-family: 'quicksand', sans-serif;
+        font-weight: 800;
+      }
+    }
+
     .item {
       padding: 10px 0;
       background: variable.$grey;
@@ -84,13 +127,7 @@ body {
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: space-between;
-
-      h2 a {
-        text-transform: uppercase;
-        text-decoration: none;
-        color: variable.$primary;
-      }
+      justify-content: space-evenly;
 
       .index {
         display: flex;
@@ -98,56 +135,94 @@ body {
         justify-content: center;
         font-weight: 900;
         border-radius: 50%;
+        font-family: 'quicksand', sans-serif;
       }
 
       .value {
-        font-size: 18px;
-        font-weight: 700;
+        background: variable.$primary;
+        color: white;
+        width: 100%;
+        max-width: 250px;
+        border-radius: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'quicksand', sans-serif;
+        font-size: 12px;
+        font-weight: 400;
+        span {
+          font-size: 16px;
+          font-weight: 600;
+        }
       }
     }
 
-    .item:nth-of-type(1) {
-      height: 225px;
+    .item-position:nth-of-type(1) {
       order: 2;
-      .index {
-        font-size: 90px;
-        width: 100px;
-        height: 100px;
-        background: #FFD700;
-        color: #fff;
+      a {
+        font-size: 40px;
+      }
+      .item {
+        height: 225px;
+        .index {
+          border: 8px solid;
+          font-size: 90px;
+          width: 100px;
+          height: 100px;
+          background: #FFD700;
+          color: #fff;
+        }
       }
     }
-    .item:nth-of-type(2) {
-      height: 150px;
+    .item-position:nth-of-type(2) {
       order: 1;
-      .index {
-        font-size: 45px;
-        width: 55px;
-        height: 55px;
-        background: #C0C0C0;
-        color: #fff;
+      a {
+        font-size: 28px;
+      }
+      .item {
+        height: 150px;
+        .index {
+          border: 6px solid;
+          font-size: 45px;
+          width: 55px;
+          height: 55px;
+          background: #C0C0C0;
+          color: #fff;
+        }
       }
     }
-    .item:nth-of-type(3) {
-      height: 125px;
+    .item-position:nth-of-type(3) {
       order: 3;
-      .index {
-        font-size: 30px;
-        width: 40px;
-        height: 40px;
-        background: #CD7F32;
-        color: #fff;
+      a {
+        font-size: 24px;
+      }
+      .item {
+        height: 125px;
+        .index {
+          border: 4px solid;
+          font-size: 30px;
+          width: 40px;
+          height: 40px;
+          background: #CD7F32;
+          color: #fff;
+        }
       }
     }
   }
 
   .list {
+
+    .device {
+      grid-template-columns: 1fr 10fr 10fr repeat(2, 4fr) repeat(2, 1fr) !important;
+    }
+
     .item {
       height: 30px;
       background: variable.$grey;
       display: grid;
-      grid-template-columns: 1fr repeat(3, 8fr);
-      justify-items: center;
+      grid-template-columns: 1fr 28fr repeat(2, 4fr);
+      grid-column-gap: 10px;
+      justify-items: start;
       margin-top: 10px;
       padding: 10px;
       border-radius: 50px;
@@ -165,8 +240,22 @@ body {
         justify-content: flex-end !important;
       }
 
+      .address {
+        align-items: center;
+        a{
+          color: #000;
+          font-family: 'quicksand', sans-serif;
+          font-weight: 700;
+          text-decoration: none;
+          font-size: 16px;
 
-      a, span {
+          i {
+            font-size: 12px;
+          }
+        }
+      }
+
+      span {
         background: variable.$primary;
         color: white;
         font-weight: 600;
@@ -197,6 +286,15 @@ form {
     display: block;
   }
 
+  .register-link {
+    margin: 10px;
+    font-weight: 500;
+
+    a {
+      color: variable.$secondary;
+    }
+  }
+
   .register {
     display: flex;
     justify-content: flex-end;
@@ -208,7 +306,6 @@ form {
     }
   }
 
-
   input {
       height: 25px;
       border-radius: 50px;
@@ -219,12 +316,13 @@ form {
   }
 
   .condition {
+    margin: 5px 0;
     label {
       margin-top: 0;
     }
     input {
       width: 15px;
-      margin-top: 4px;
+      margin-top: 5px;
     }
   }
 }
