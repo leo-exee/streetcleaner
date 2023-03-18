@@ -1,6 +1,9 @@
 doctrine:
     dbal:
-        url: '%env(resolve:DATABASE_URL)%'
+        host: 'tommy2.heliohost.org'
+        user: 'jorisvaux_fablab'
+        password: 'sP9l#W148W!0'
+        dbname: 'jorisvaux_fablab'
 
         # IMPORTANT: You MUST configure your server version,
         # either here or in the DATABASE_URL env var (see .env file)

@@ -41,9 +41,8 @@ class DeviceController extends AbstractController
 
                 $deviceRepository->save($device, true);
 
-                return $this->redirectToRoute('app_device_edit', ['id' => $device->getId()], Response::HTTP_SEE_OTHER);
+                return $this->redirectToRoute('app_user_show', ['id' => $this->getUser()->getId()], Response::HTTP_SEE_OTHER);
             }
-
             return $this->renderForm('device/new.html.twig', [
                 'device' => $device,
                 'form' => $form,
@@ -100,9 +99,29 @@ class DeviceController extends AbstractController
                 $deviceRepository->remove($device, true);
             }
 
-            return $this->redirectToRoute('app_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_user_show', ['id' => $this->getUser()->getId()], Response::HTTP_SEE_OTHER);
         }
-        return $this->redirectToRoute('app_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_user_show', ['id' => $this->getUser()->getId()], Response::HTTP_SEE_OTHER);
 
     }
+
+    #[Route('/add-data/{id}/{temp}/{hum}', name: 'app_device_insertdata', methods: ['GET', 'POST'])]
+    public function add_data(Request $request, DeviceRepository $deviceRepository): Response
+    {
+        $id = $request->attributes->get('id');
+        $temp = $request->attributes->get('temp');
+        $hum = $request->attributes->get('hum');
+
+        if($deviceRepository->findById($id)){
+           $device = $deviceRepository->findById($id)[0];
+           $device->setTemperature($temp);
+           $device->setHumidity($hum);
+           $deviceRepository->save($device, true);
+           return $this->json(['status' => 'succes']);
+        } 
+        else{
+            return $this->json(['status' => 'fail', "data" => ["title" => "No device found for this ID"]]);
+        }
+    }
+
 }

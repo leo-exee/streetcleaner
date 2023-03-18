@@ -32,15 +32,24 @@ class UserController extends AbstractController
                 return $device->getHumidity();
             }, $devices);
 
-            $temp = array_sum($temperatures) / count($temperatures);
-            $hum = array_sum($humidities) / count($humidities);
+            if(count($temperatures) > 0 and count($humidities) > 0){
+                $temp = array_sum($temperatures) / count($temperatures);
+                $hum = array_sum($humidities) / count($humidities);
 
-            return $this->render('user/show.html.twig', [
-                'user' => $user,
-                'devices' => $devices,
-                'temp' => $temp,
-                'hum' => $hum
-            ]);
+                return $this->render('user/show.html.twig', [
+                    'user' => $user,
+                    'devices' => $devices,
+                    'temp' => $temp,
+                    'hum' => $hum
+                ]);
+            } else{
+                return $this->render('user/show.html.twig', [
+                    'user' => $user,
+                    'devices' => $devices
+                ]);
+            }
+
+
         }
         return $this->redirectToRoute('app_index', [], Response::HTTP_SEE_OTHER);
     }
