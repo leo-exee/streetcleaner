@@ -27,10 +27,25 @@
                             {{ loop.index }}
                         </span>
                         </div>
-                        <div class="value">
-                            <span>{{ item.temperature }}°C</span>
-                            &nbsp;&&nbsp;
-                            <span>{{ item.humidity }} %</span>
+                        <div class="values" >
+                            {% if item.temperature >= 0 and item.temperature < 500 %}
+                                <span class="value success-no-hover">PM10 : Bonne</span>
+                            {% elseif item.temperature >= 500 and item.temperature < 1500 %}
+                                <span class="value warning-no-hover">PM10 : Moyenne</span>
+                            {% elseif item.temperature >= 1500 and item.temperature < 4000 %}
+                                <span class="value warning-no-hover">PM10 : Attention{{ item.temperature }}</span>
+                            {% else %}
+                                <span class="value danger-no-hover">PM10 : Danger</span>
+                            {% endif %}
+                            {% if item.humidity >= 0 and item.humidity < 500 %}
+                                <span class="value success-no-hover">PM2.5 : Bonne</span>
+                            {% elseif item.humidity >= 500 and item.humidity < 1500 %}
+                                <span class="value warning-no-hover">PM2.5 : Moyenne</span>
+                            {% elseif item.humidity >= 1500 and item.humidity < 4000 %}
+                                <span class="value warning-no-hover">PM2.5 : Attention</span>
+                            {% else %}
+                                <span class="value danger-no-hover">PM2.5 : Danger</span>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -67,24 +82,24 @@
                         </div>
                         <div class="values" >
                             {% if item.temperature >= 0 and item.temperature < 500 %}
-                                <span class="success-no-hover">{{ item.temperature }}</span>
+                                <span class="success-no-hover">Bonne</span>
                             {% elseif item.temperature >= 500 and item.temperature < 1500 %}
-                                <span class="warning-no-hover">{{ item.temperature }}</span>
+                                <span class="warning-no-hover">Moyenne</span>
                             {% elseif item.temperature >= 1500 and item.temperature < 4000 %}
-                                <span class="warning-no-hover">{{ item.temperature }}</span>
+                                <span class="warning-no-hover">Attention{{ item.temperature }}</span>
                             {% else %}
-                                <span class="danger-no-hover">{{ item.temperature }}</span>
+                                <span class="danger-no-hover">Danger</span>
                             {% endif %}
                         </div>
                         <div class="values" >
                             {% if item.humidity >= 0 and item.humidity < 500 %}
-                                <span class="success-no-hover">{{ item.humidity }}</span>
+                                <span class="success-no-hover">Bonne</span>
                             {% elseif item.humidity >= 500 and item.humidity < 1500 %}
-                                <span class="warning-no-hover">{{ item.humidity }}</span>
+                                <span class="warning-no-hover">Moyenne</span>
                             {% elseif item.humidity >= 1500 and item.humidity < 4000 %}
-                                <span class="warning-no-hover">{{ item.humidityhumidity }}</span>
+                                <span class="warning-no-hover">Attention</span>
                             {% else %}
-                                <span class="danger-no-hover">{{ item.humidity }}</span>
+                                <span class="danger-no-hover">Danger</span>
                             {% endif %}
                         </div>
                     </div>
