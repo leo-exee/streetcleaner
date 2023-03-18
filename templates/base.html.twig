@@ -11,11 +11,16 @@
 
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
+            {{ encore_entry_script_tags('loading') }}
         {% endblock %}
 
         {% set current_path = app.request.get('_route') %}
     </head>
     <body>
+
+    <div id="loader">
+        <div id="loader-animation"></div>
+    </div>
 
     {{ component('nav', { path: current_path }) }}
 

@@ -47,10 +47,10 @@
                     <p>Adresse</p>
                 </div>
                 <div>
-                    <p>Temp.</p>
+                    <p>PM10</p>
                 </div>
                 <div>
-                    <p>Hum.</p>
+                    <p>PM2.5</p>
                 </div>
 
             </div>
@@ -66,10 +66,10 @@
                             <a href="{{ path('app_address_detail', {'address' : item.adress}) }}">{{ item.adress }} <i class="fa-solid fa-magnifying-glass"></i></a>
                         </div>
                         <div class="values" >
-                            <span class="primary-no-hover">{{ item.temperature }}°C</span>
+                            <span class="primary-no-hover">{{ item.temperature }}</span>
                         </div>
                         <div class="values" >
-                            <span class="primary-no-hover">{{ item.humidity }} %</span>
+                            <span class="primary-no-hover">{{ item.humidity }}</span>
                         </div>
                     </div>
                 {% endif %}
