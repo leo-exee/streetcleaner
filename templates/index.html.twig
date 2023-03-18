@@ -66,10 +66,26 @@
                             <a href="{{ path('app_address_detail', {'address' : item.adress}) }}">{{ item.adress }} <i class="fa-solid fa-magnifying-glass"></i></a>
                         </div>
                         <div class="values" >
-                            <span class="primary-no-hover">{{ item.temperature }}</span>
+                            {% if item.temperature >= 0 and item.temperature < 500 %}
+                                <span class="success-no-hover">{{ item.temperature }}</span>
+                            {% elseif item.temperature >= 500 and item.temperature < 1500 %}
+                                <span class="warning-no-hover">{{ item.temperature }}</span>
+                            {% elseif item.temperature >= 1500 and item.temperature < 4000 %}
+                                <span class="warning-no-hover">{{ item.temperature }}</span>
+                            {% else %}
+                                <span class="danger-no-hover">{{ item.temperature }}</span>
+                            {% endif %}
                         </div>
                         <div class="values" >
-                            <span class="primary-no-hover">{{ item.humidity }}</span>
+                            {% if item.humidity >= 0 and item.humidity < 500 %}
+                                <span class="success-no-hover">{{ item.humidity }}</span>
+                            {% elseif item.humidity >= 500 and item.humidity < 1500 %}
+                                <span class="warning-no-hover">{{ item.humidity }}</span>
+                            {% elseif item.humidity >= 1500 and item.humidity < 4000 %}
+                                <span class="warning-no-hover">{{ item.humidityhumidity }}</span>
+                            {% else %}
+                                <span class="danger-no-hover">{{ item.humidity }}</span>
+                            {% endif %}
                         </div>
                     </div>
                 {% endif %}

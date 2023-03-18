@@ -7,7 +7,9 @@ $secondary : #227093;
 
 $grey: #e2e2e2;
 
+$success: #27ae60;
 $danger : #e84118;
+$attention: #f39c12;
 $warning : #fbc531;
 
 .primary {
@@ -60,4 +62,14 @@ $warning : #fbc531;
 .warning-no-hover {
   background: $warning !important;
   color: #000 !important;
+}
+
+.success-no-hover {
+  background: $success !important;
+  color: #fff !important;
+}
+
+.attention-no-hover {
+  background: $attention !important;
+  color: #000;
 }

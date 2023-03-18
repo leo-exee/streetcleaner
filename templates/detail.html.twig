@@ -14,18 +14,48 @@
     <div class="container details">
 
         <h1>{{ name }}</h1>
-        <div class="values">
-            <div style="justify-content: flex-end;">
-                <h2 class="primary-no-hover">PM10 : {{ temp }}</h2>
-            </div>
-            <div style="justify-content: flex-start;">
-                <h2 class="primary-no-hover">PM2.5 : {{ hum }}</h2>
-            </div>
+
+        <div class="values" >
+            {% if temp >= 0 and temp < 500 %}
+                <div style="justify-content: flex-end;">
+                    <h2 class="success-no-hover">PM10 : {{ temp }}</h2>
+                </div>
+            {% elseif temp >= 500 and temp < 1500 %}
+                <div style="justify-content: flex-end;">
+                    <h2 class="warning-no-hover">PM10 : {{ temp }}</h2>
+                </div>
+            {% elseif temp >= 1500 and temp < 4000 %}
+                <div style="justify-content: flex-end;">
+                    <h2 class="attention-no-hover">PM10 : {{ temp }}</h2>
+                </div>
+            {% else %}
+                <div style="justify-content: flex-end;">
+                    <h2 class="danger-no-hover">PM10 : {{ temp }}</h2>
+                </div>
+            {% endif %}
+            {% if hum >= 0 and hum < 500 %}
+                <div style="justify-content: flex-start;">
+                    <h2 class="success-no-hover">PM10 : {{ hum }}</h2>
+                </div>
+            {% elseif hum >= 500 and hum < 1500 %}
+                <div style="justify-content: flex-start;">
+                    <h2 class="warning-no-hover">PM10 : {{ hum }}</h2>
+                </div>
+            {% elseif hum >= 1500 and hum < 4000 %}
+                <div style="justify-content: flex-start;">
+                    <h2 class="attention-no-hover">PM10 : {{ hum }}</h2>
+                </div>
+            {% else %}
+                <div style="justify-content: flex-start;">
+                    <h2 class="danger-no-hover">PM10 : {{ hum }}</h2>
+                </div>
+            {% endif %}
         </div>
 
 
         <div class="list" style="margin-bottom: 80px">
             {% for item in items %}
+
                     <div class="item">
                         <div class="index">
                             <span>
@@ -35,10 +65,26 @@
                         <div class="address">
                         </div>
                         <div class="values" >
-                            <span class="primary-no-hover">{{ item.temperature }}°C</span>
+                            {% if item.temperature >= 0 and item.temperature < 500 %}
+                                <span class="success-no-hover">{{ item.temperature }}</span>
+                            {% elseif item.temperature >= 500 and item.temperature < 1500 %}
+                                <span class="warning-no-hover">{{ item.temperature }}</span>
+                            {% elseif item.temperature >= 1500 and item.temperature < 4000 %}
+                                <span class="warning-no-hover">{{ item.temperature }}</span>
+                            {% else %}
+                                <span class="danger-no-hover">{{ item.temperature }}</span>
+                            {% endif %}
                         </div>
                         <div class="values" >
-                            <span class="primary-no-hover">{{ item.humidity }} %</span>
+                            {% if item.humidity >= 0 and item.humidity < 500 %}
+                                <span class="success-no-hover">{{ item.humidity }}</span>
+                            {% elseif item.humidity >= 500 and item.humidity < 1500 %}
+                                <span class="warning-no-hover">{{ item.humidity }}</span>
+                            {% elseif item.humidity >= 1500 and item.humidity < 4000 %}
+                                <span class="warning-no-hover">{{ item.humidityhumidity }}</span>
+                            {% else %}
+                                <span class="danger-no-hover">{{ item.humidity }}</span>
+                            {% endif %}
                         </div>
                     </div>
             {% endfor %}

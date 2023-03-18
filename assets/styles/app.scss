@@ -279,7 +279,7 @@ html, body {
       padding: 5px;
       border-radius: 50px;
       .index {
-        background: variable.$secondary;
+        background: variable.$primary;
         color: #fff;
         font-weight: 600;
         width: 30px;
@@ -302,11 +302,13 @@ html, body {
       }
       .values {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
+
         span {
           height: 30px;
           font-weight: 600;
           width: 100%;
+          max-width: 150px;
           border-radius: 50px;
           display: flex;
           align-items: center;

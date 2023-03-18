@@ -30,10 +30,10 @@
 
         <div class="title">
             <h2>Vos appareils</h2>
-            <a class="btn secondary" href="{{ path('app_device_new') }}"><i class="fa-solid fa-plus"></i> Ajouter un appareil</a>
+            <a class="btn primary" href="{{ path('app_device_new') }}"><i class="fa-solid fa-plus"></i> Ajouter un appareil</a>
         </div>
 
-        <div class="list" style="margin-bottom: 80px">
+        <div class="list" style="margin-bottom: 80px; border-top: none">
             {% if devices|length > 0 %}
                 {% for device in devices %}
                     <div class="item">
