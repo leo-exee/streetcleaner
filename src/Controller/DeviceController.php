@@ -44,7 +44,19 @@ class DeviceController extends AbstractController
                 return $this->redirectToRoute('app_device_edit', ['id' => $device->getId()], Response::HTTP_SEE_OTHER);
             }
 
-            return $this->renderForm('device/new.html.twig', [
+            $randomKey = bin2hex(random_bytes(10));
+            $existingDeviceWithKey = $deviceRepository->findOneBy(['device' => $randomKey]);
+
+            while ($existingDeviceWithKey !== null) {
+                $randomKey = bin2hex(random_bytes(10));
+                $existingDeviceWithKey = $deviceRepository->findOneBy(['device' => $randomKey]);
+            }
+
+            $device = new Device();
+            $device->setDevice($randomKey);
+
+            $form = $this->createForm(DeviceType::class, $device);
+            return $this->render('device/new.html.twig', [
                 'device' => $device,
                 'form' => $form,
             ]);

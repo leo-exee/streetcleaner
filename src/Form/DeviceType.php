@@ -17,6 +17,7 @@ class DeviceType extends AbstractType
             ->add('device',TextType::class, [
                 'label' => "Identifiant de votre appareil",
                 'attr' => array(
+                    'disabled' => 'disabled',
                     'placeholder' => '...'
                 ),
             ])
