@@ -8,4 +8,5 @@ use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
 class NavComponent
 {
     public user $user;
+    public string $path;
 }

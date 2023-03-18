@@ -14,13 +14,7 @@ class DeviceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('device',TextType::class, [
-                'label' => "Identifiant de votre appareil",
-                'attr' => array(
-                    'disabled' => 'disabled',
-                    'placeholder' => '...'
-                ),
-            ])
+            ->add('device',HiddenType::class)
             ->add('adress',TextType::class, [
                 'label' => "Adresse de votre appareil",
                 'attr' => array(

@@ -1,15 +1,14 @@
 @use 'variable';
 
 nav {
-  display: flex;
-  justify-content: center;
-  background: url("../images/blue-background.svg") no-repeat center;
+  height: 60px;
+  bottom: 0;
+  position: fixed;
+  background: linear-gradient(
+                  rgba(0, 0, 0, 0.1),
+                  rgba(0, 0, 0, 0.1)
+  ), url("../images/second-background.svg") no-repeat center;
   background-size: cover;
-  color: #fff;
-  width: 100%;
-  position: sticky;
-  top: 0;
-  left: 0;
   .container {
     margin: 10px auto;
     width: 100%;
@@ -18,16 +17,43 @@ nav {
     align-items: center;
     justify-content: space-between;
   }
-  .menu {
+}
+
+.nav {
+  img {
+    height: 30px;
+    padding-top: 15px;
+  }
+  top: 0;
+  position: sticky;
+  background: url("../images/blue-background.svg") no-repeat bottom;
+  background-size: cover;
+  .container {
+    margin: 10px auto;
+    width: 100%;
+    max-width: 1140px;
     display: flex;
-    gap: 10px;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+nav, .nav {
+  display: flex;
+  justify-content: center;
+  color: #fff;
+  width: 100%;
+  .menu {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    display: flex;
     align-items: center;
     justify-content: space-between;
     list-style: none;
     .menu-link {
       color: #fff;
       text-decoration: none;
-      padding: 10px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -37,18 +63,24 @@ nav {
   .menu-item {
     list-style: none;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     width: 100%;
     align-items: center;
     a {
+      font-size: 28px;
       overflow: hidden;
       white-space: nowrap;
       display: flex;
       align-items: center;
       text-decoration: none;
-      color: white;
+      color: variable.$secondary;
+      filter: opacity(50%);
       text-align: right;
-      font-weight: 500;
+    }
+    a.select {
+      filter: opacity(100%);
+      font-size: 28px;
+      color: variable.$secondary;
     }
   }
 }

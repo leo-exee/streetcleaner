@@ -12,10 +12,18 @@
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
+
+        {% set current_path = app.request.get('_route') %}
     </head>
     <body>
 
-    {{ component('nav') }}
+    {{ component('nav', { path: current_path }) }}
+
+    <div class="nav">
+        <div class="container">
+            <img src="/assets/logo.png" alt="Logo">
+        </div>
+    </div>
 
         {% block body %}{% endblock %}
     </body>

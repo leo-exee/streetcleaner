@@ -5,6 +5,7 @@
         {{ form_label(form.password) }}
         {{ form_widget(form.password)}}
     <div class="save">
+        <a class="btn primary" href="{{ path('app_user_show', {'id': user.id}) }}"><i class="fa-solid fa-xmark"></i> Annuler</a>
         <button type="submit" class="btn secondary"><i class="fa-solid fa-floppy-disk"></i> {{ button_label|default('Enregistrer') }}</button>
     </div>
 {{ form_end(form) }}

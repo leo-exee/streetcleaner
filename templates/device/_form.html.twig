@@ -3,15 +3,13 @@
 {% endblock %}
 
 {{ form_start(form) }}
-        {{ form_label(form.device) }}
-        {{ form_widget(form.device)}}
-
         {{ form_label(form.adress) }}
         {{ form_widget(form.adress)}}
         <div class="autocomplete-list">
             <ul id="address-list"></ul>
         </div>
 <div class="save">
+    <a class="btn primary" href="{{ path('app_user_show', {'id': user.id}) }}"><i class="fa-solid fa-xmark"></i> Annuler</a>
     <button type="submit" class="btn secondary"><i class="fa-solid fa-floppy-disk"></i> {{ button_label|default('Ajouter') }}</button>
 </div>
 {{ form_end(form) }}

@@ -6,6 +6,10 @@
 {% block body %}
     <div class="container">
         <h1>Modifier votre appareil</h1>
+        <form>
+            <label >Identifiant de votre appareil</label>
+            <input type="text"  value="{{ device.device }}">
+        </form>
         {{ include('device/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
     </div>
 {% endblock %}

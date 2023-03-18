@@ -20,8 +20,11 @@
             <p>Moyenne d'humidité : <span>{{ hum ?? "??" }} %</span></p>
         </div>
 
-        <div class="multi-btn">
+        <div class="save">
             <a class="btn secondary" href="{{ path('app_user_edit', {'id': user.id}) }}"><i class="fa-solid fa-pen-to-square"></i> Modifier vos informations</a>
+            <a class="btn warning" href="{{ path('app_logout') }}"><i class="fa-solid fa-right-from-bracket"></i> Se déconnecter</a>
+        </div>
+        <div style="margin-top: 20px">
             {{ include('user/_delete_form.html.twig') }}
         </div>
 
@@ -30,31 +33,22 @@
             <a class="btn secondary" href="{{ path('app_device_new') }}"><i class="fa-solid fa-plus"></i> Ajouter un appareil</a>
         </div>
 
-        <div class="list">
+        <div class="list" style="margin-bottom: 80px">
             {% if devices|length > 0 %}
                 {% for device in devices %}
-                    <div class="item device">
-                        <div>
+                    <div class="item">
+                        <div class="index">
                             <span>
                                 {{ loop.index }}
                             </span>
                         </div>
                         <div class="address">
-                            <p>{{ device.device }}<p>
-                        </div>
-                        <div class="address">
                             <a href="{{ path('app_address_detail', {'address' : device.adress}) }}">{{ device.adress }} <i class="fa-solid fa-magnifying-glass"></i></a>
                         </div>
-                        <div >
-                            <span>{{ device.temperature ?? "??" }}°C</span>
+                        <div class="values">
                         </div>
-                        <div>
-                            <span>{{ device.humidity ?? "??" }} %</span>
-                        </div>
-                        <div>
-                            <a class="btn-icon secondary" href="{{ path('app_device_edit', {'id': device.id}) }}"><i class="fa-solid fa-pen-to-square"></i></a>
-                        </div>
-                        <div>
+                        <div class="actions">
+                            <a style="width: 100px; border-radius: 50px" class="btn-icon secondary" href="{{ path('app_device_edit', {'id': device.id}) }}"><i class="fa-solid fa-pen-to-square"></i></a>
                             {{ include('device/_delete_form.html.twig') }}
                         </div>
                     </div>

@@ -11,41 +11,36 @@
 {% block title %}{{ name }}{% endblock %}
 
 {% block body %}
-    <div class="container">
+    <div class="container details">
 
         <h1>{{ name }}</h1>
-        <h2>Température : {{ temp }} °C</h2>
-        <h2>Humidité : {{ hum }} %</h2>
-
-        <div class="list rank">
-
-            <div class="item-header">
-
-                <div>
-                    <p>#</p>
-                </div>
-                <div>
-                </div>
-                <div class="center">
-                    <p>Valeurs</p>
-                </div>
+        <div class="values">
+            <div style="justify-content: flex-end;">
+                <h2 class="primary-no-hover">Temp : {{ temp }} °C</h2>
             </div>
+            <div style="justify-content: flex-start;">
+                <h2 class="primary-no-hover">Hum : {{ hum }} %</h2>
+            </div>
+        </div>
+
+
+        <div class="list" style="margin-bottom: 80px">
             {% for item in items %}
-                <div class="item">
-                    <div>
+                    <div class="item">
+                        <div class="index">
                             <span>
                                 {{ loop.index }}
                             </span>
+                        </div>
+                        <div class="address">
+                        </div>
+                        <div class="values" >
+                            <span class="primary-no-hover">{{ item.temperature }}°C</span>
+                        </div>
+                        <div class="values" >
+                            <span class="primary-no-hover">{{ item.humidity }} %</span>
+                        </div>
                     </div>
-                    <div class="address">
-                    </div>
-                    <div >
-                        <span>{{ item.temperature }}°C</span>
-                    </div>
-                    <div>
-                        <span>{{ item.humidity }} %</span>
-                    </div>
-                </div>
             {% endfor %}
         </div>
     </div>

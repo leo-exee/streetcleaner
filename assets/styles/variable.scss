@@ -41,3 +41,23 @@ $warning : #fbc531;
     background: darken($warning, 10%) !important;
   }
 }
+
+.primary-no-hover {
+  background: $primary !important;
+  color: #fff !important;
+}
+
+.secondary-no-hover {
+  background: $secondary !important;
+  color: #fff !important;
+}
+
+.danger-no-hover {
+  background: $danger !important;
+  color: #fff !important;
+}
+
+.warning-no-hover {
+  background: $warning !important;
+  color: #000 !important;
+}

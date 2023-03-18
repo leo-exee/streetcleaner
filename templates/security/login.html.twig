@@ -26,18 +26,15 @@
                value="{{ csrf_token('authenticate') }}"
         >
 
-        <p class="register-link">Vous n'êtes pas inscrits ? Alors <a href="{{path('app_register')}}">rejoignez-nous</a></p>
-        {#
-        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-        See https://symfony.com/doc/current/security/remember_me.html
 
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" name="_remember_me"> Remember me
+        <div class="condition">
+            <label for="_remember_me">
+                <span>Se souvenir de moi ?</span>
             </label>
+            <input type="checkbox" name="_remember_me">
         </div>
-        #}
 
+        <p class="register-link">Vous n'êtes pas inscrits ? Alors <a href="{{path('app_register')}}">rejoignez-nous</a></p>
         <div class="register">
             <button class="btn secondary" type="submit">
                 <i class="fa-solid fa-right-to-bracket"></i> Se connecter

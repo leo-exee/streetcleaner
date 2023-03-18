@@ -29,10 +29,18 @@ class DeviceController extends AbstractController
     #[Route('/new', name: 'app_device_new', methods: ['GET', 'POST'])]
     public function new(Request $request, DeviceRepository $deviceRepository): Response
     {
-
         $securityContext = $this->container->get('security.authorization_checker');
         if($securityContext->isGranted('ROLE_USER')){
+            $randomKey = bin2hex(random_bytes(10));
+            $existingDeviceWithKey = $deviceRepository->findOneBy(['device' => $randomKey]);
+
+            while ($existingDeviceWithKey !== null) {
+                $randomKey = bin2hex(random_bytes(10));
+                $existingDeviceWithKey = $deviceRepository->findOneBy(['device' => $randomKey]);
+            }
+
             $device = new Device();
+            $device->setDevice($randomKey);
             $form = $this->createForm(DeviceType::class, $device);
             $form->handleRequest($request);
 
@@ -44,38 +52,14 @@ class DeviceController extends AbstractController
                 return $this->redirectToRoute('app_device_edit', ['id' => $device->getId()], Response::HTTP_SEE_OTHER);
             }
 
-            $randomKey = bin2hex(random_bytes(10));
-            $existingDeviceWithKey = $deviceRepository->findOneBy(['device' => $randomKey]);
-
-            while ($existingDeviceWithKey !== null) {
-                $randomKey = bin2hex(random_bytes(10));
-                $existingDeviceWithKey = $deviceRepository->findOneBy(['device' => $randomKey]);
-            }
-
-            $device = new Device();
-            $device->setDevice($randomKey);
-
             $form = $this->createForm(DeviceType::class, $device);
             return $this->render('device/new.html.twig', [
                 'device' => $device,
                 'form' => $form,
+                'user' => $this->getUser()
             ]);
         }
         return $this->redirectToRoute('app_index', [], Response::HTTP_SEE_OTHER);
-
-    }
-
-    #[Route('/{id}', name: 'app_device_show', methods: ['GET'])]
-    public function show(Device $device): Response
-    {
-        $securityContext = $this->container->get('security.authorization_checker');
-        if($securityContext->isGranted('ROLE_ADMIN') || $device->getUser() === $this->getUser()){
-            return $this->render('device/show.html.twig', [
-                'device' => $device,
-            ]);
-        }
-        return $this->redirectToRoute('app_index', [], Response::HTTP_SEE_OTHER);
-
 
     }
 
@@ -95,6 +79,7 @@ class DeviceController extends AbstractController
             return $this->renderForm('device/edit.html.twig', [
                 'device' => $device,
                 'form' => $form,
+                'user' => $this->getUser()
             ]);
         }
         return $this->redirectToRoute('app_index', [], Response::HTTP_SEE_OTHER);
