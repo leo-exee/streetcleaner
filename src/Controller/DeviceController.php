@@ -121,3 +121,4 @@ class DeviceController extends AbstractController
             return $this->json(['status' => 'fail', "data" => ["title" => "No device found for this ID"]]);
         }
     }
+}
