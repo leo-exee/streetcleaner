@@ -77,6 +77,20 @@ class UserController extends AbstractController
 
     }
 
+    #[Route('{id}/delete', name: 'app_user_remove')]
+    public function remove (Request $request, User $user)
+    {
+        $securityContext = $this->container->get('security.authorization_checker');
+        if ($securityContext->isGranted('ROLE_ADMIN') || $this->getUser() === $user) {
+
+            return $this->render('user/remove.html.twig', [
+                'user' => $user
+            ]);
+
+        }
+        return $this->redirectToRoute('app_user_show', ['id' => $this->getUser()->getId()], Response::HTTP_SEE_OTHER);
+    }
+
     #[Route('/{id}', name: 'app_user_delete', methods: ['POST'])]
     public function delete(Request $request, User $user, UserRepository $userRepository): Response
     {
@@ -86,7 +100,7 @@ class UserController extends AbstractController
                 $userRepository->remove($user, true);
             }
 
-            return $this->redirectToRoute('app_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_login', [], Response::HTTP_SEE_OTHER);
         }
         return $this->redirectToRoute('app_index', [], Response::HTTP_SEE_OTHER);
 

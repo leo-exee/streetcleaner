@@ -16,9 +16,9 @@
         <div class="first-third">
             {% for item in items|slice(0,3) %}
                 <div class="item-position">
-                    <div class="center">
+                    <div>
                         <h2>
-                            <a href="{{ path('app_address_detail', {'address' : item.adress}) }}">{{ item.adress }} <i class="fa-solid fa-magnifying-glass"></i></a>
+                            <a href="{{ path('app_address_detail', {'address' : item.adress}) }}">{{ item.adress }}</a>
                         </h2>
                     </div>
                     <div class="item">
@@ -52,7 +52,7 @@
             {% endfor %}
         </div>
 
-        <div class="list" style="margin-bottom: 80px">
+        <div class="list" style="margin-bottom: 100px">
 
             <div class="item header">
 
@@ -78,7 +78,7 @@
                             </span>
                         </div>
                         <div class="address">
-                            <a href="{{ path('app_address_detail', {'address' : item.adress}) }}">{{ item.adress }} <i class="fa-solid fa-magnifying-glass"></i></a>
+                            <a href="{{ path('app_address_detail', {'address' : item.adress}) }}">{{ item.adress }}</a>
                         </div>
                         <div class="values" >
                             {% if item.temperature >= 0 and item.temperature < 500 %}

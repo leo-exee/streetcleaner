@@ -17,7 +17,7 @@ class DeviceController extends AbstractController
     public function index(DeviceRepository $deviceRepository): Response
     {
         $securityContext = $this->container->get('security.authorization_checker');
-        if($securityContext->isGranted('ROLE_ADMIN')){
+        if ($securityContext->isGranted('ROLE_ADMIN')) {
             return $this->render('device/index.html.twig', [
                 'devices' => $deviceRepository->findAll(),
             ]);
@@ -30,7 +30,7 @@ class DeviceController extends AbstractController
     public function new(Request $request, DeviceRepository $deviceRepository): Response
     {
         $securityContext = $this->container->get('security.authorization_checker');
-        if($securityContext->isGranted('ROLE_USER')){
+        if ($securityContext->isGranted('ROLE_USER')) {
             $randomKey = bin2hex(random_bytes(10));
             $existingDeviceWithKey = $deviceRepository->findOneBy(['device' => $randomKey]);
 
@@ -67,7 +67,7 @@ class DeviceController extends AbstractController
     public function edit(Request $request, Device $device, DeviceRepository $deviceRepository): Response
     {
         $securityContext = $this->container->get('security.authorization_checker');
-        if($securityContext->isGranted('ROLE_ADMIN') || $device->getUser() === $this->getUser()){
+        if ($securityContext->isGranted('ROLE_ADMIN') || $device->getUser() === $this->getUser()) {
             $form = $this->createForm(DeviceType::class, $device);
             $form->handleRequest($request);
 
@@ -76,7 +76,7 @@ class DeviceController extends AbstractController
 
             }
 
-            return $this->renderForm('device/edit.html.twig', [
+            return $this->render('device/edit.html.twig', [
                 'device' => $device,
                 'form' => $form,
                 'user' => $this->getUser()
@@ -87,13 +87,28 @@ class DeviceController extends AbstractController
 
     }
 
+    #[Route('/{id}/delete', name: 'app_device_remove')]
+    public function remove (Request $request, Device $device)
+    {
+        $securityContext = $this->container->get('security.authorization_checker');
+        if ($securityContext->isGranted('ROLE_ADMIN') || $device->getUser() === $this->getUser()) {
+
+            return $this->render('device/remove.html.twig', [
+                'device' => $device,
+                'user' => $this->getUser()
+            ]);
+
+        }
+        return $this->redirectToRoute('app_user_show', ['id' => $this->getUser()->getId()], Response::HTTP_SEE_OTHER);
+    }
+
     #[Route('/{id}', name: 'app_device_delete', methods: ['POST'])]
     public function delete(Request $request, Device $device, DeviceRepository $deviceRepository): Response
     {
         $securityContext = $this->container->get('security.authorization_checker');
-        if($securityContext->isGranted('ROLE_ADMIN') || $device->getUser() === $this->getUser()){
+        if ($securityContext->isGranted('ROLE_ADMIN') || $device->getUser() === $this->getUser()) {
 
-            if ($this->isCsrfTokenValid('delete'.$device->getId(), $request->request->get('_token'))) {
+            if ($this->isCsrfTokenValid('delete' . $device->getId(), $request->request->get('_token'))) {
                 $deviceRepository->remove($device, true);
             }
 
@@ -110,14 +125,14 @@ class DeviceController extends AbstractController
         $temp = $request->attributes->get('temp');
         $hum = $request->attributes->get('hum');
 
-        if($deviceRepository->findById($id)){
-           $device = $deviceRepository->findById($id)[0];
-           $device->setTemperature($temp);
-           $device->setHumidity($hum);
-           $deviceRepository->save($device, true);
-           return $this->json(['status' => 'succes']);
-        }
-        else{
+        if ($deviceRepository->findById($id)) {
+            $device = $deviceRepository->findById($id)[0];
+            $device->setTemperature($temp);
+            $device->setHumidity($hum);
+            $deviceRepository->save($device, true);
+            return $this->json(['status' => 'succes']);
+        } else {
             return $this->json(['status' => 'fail', "data" => ["title" => "No device found for this ID"]]);
         }
     }
+}

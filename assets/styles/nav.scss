@@ -1,7 +1,7 @@
 @use 'variable';
 
 nav {
-  height: 60px;
+  height: 80px;
   bottom: 0;
   position: fixed;
   background: linear-gradient(
@@ -20,6 +20,7 @@ nav {
 }
 
 .nav {
+  z-index: 5;
   img {
     height: 30px;
     padding-top: 15px;
@@ -67,7 +68,7 @@ nav, .nav {
     width: 100%;
     align-items: center;
     a {
-      font-size: 26px;
+      font-size: 28px;
       overflow: hidden;
       white-space: nowrap;
       display: flex;
@@ -76,8 +77,8 @@ nav, .nav {
       color: variable.$primary;
       text-align: right;
       background: #fff;
-      height: 50px;
-      width: 50px;
+      height: 60px;
+      width: 60px;
       border-radius: 50%;
       justify-content: center;
       i {
