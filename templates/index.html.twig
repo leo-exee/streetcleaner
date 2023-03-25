@@ -28,21 +28,21 @@
                         </span>
                         </div>
                         <div class="values" >
-                            {% if item.temperature >= 0 and item.temperature < 500 %}
+                            {% if item.temperature < 20 %}
                                 <span class="value success-no-hover">PM10 : Bonne</span>
-                            {% elseif item.temperature >= 500 and item.temperature < 1500 %}
+                            {% elseif item.temperature >= 20 and item.temperature < 50 %}
                                 <span class="value warning-no-hover">PM10 : Moyenne</span>
-                            {% elseif item.temperature >= 1500 and item.temperature < 4000 %}
-                                <span class="value warning-no-hover">PM10 : Attention{{ item.temperature }}</span>
+                            {% elseif item.temperature >= 50 and item.temperature < 150 %}
+                                <span class="value attention-no-hover">PM10 : Attention</span>
                             {% else %}
                                 <span class="value danger-no-hover">PM10 : Danger</span>
                             {% endif %}
-                            {% if item.humidity >= 0 and item.humidity < 500 %}
+                            {% if item.humidity < 10 %}
                                 <span class="value success-no-hover">PM2.5 : Bonne</span>
-                            {% elseif item.humidity >= 500 and item.humidity < 1500 %}
+                            {% elseif item.humidity >= 10 and item.humidity < 25 %}
                                 <span class="value warning-no-hover">PM2.5 : Moyenne</span>
-                            {% elseif item.humidity >= 1500 and item.humidity < 4000 %}
-                                <span class="value warning-no-hover">PM2.5 : Attention</span>
+                            {% elseif item.humidity >= 25 and item.humidity < 75 %}
+                                <span class="value attention-no-hover">PM2.5 : Attention</span>
                             {% else %}
                                 <span class="value danger-no-hover">PM2.5 : Danger</span>
                             {% endif %}
@@ -52,7 +52,7 @@
             {% endfor %}
         </div>
 
-        <div class="list" style="margin-bottom: 100px">
+        <div class="list">
 
             <div class="item header">
 
@@ -81,23 +81,23 @@
                             <a href="{{ path('app_address_detail', {'address' : item.adress}) }}">{{ item.adress }}</a>
                         </div>
                         <div class="values" >
-                            {% if item.temperature >= 0 and item.temperature < 500 %}
-                                <span class="success-no-hover">Bonne</span>
-                            {% elseif item.temperature >= 500 and item.temperature < 1500 %}
-                                <span class="warning-no-hover">Moyenne</span>
-                            {% elseif item.temperature >= 1500 and item.temperature < 4000 %}
-                                <span class="warning-no-hover">Attention{{ item.temperature }}</span>
+                            {% if item.temperature < 20 %}
+                                <span class="value success-no-hover">Bonne</span>
+                            {% elseif item.temperature >= 20 and item.temperature < 50 %}
+                                <span class="value warning-no-hover">Moyenne</span>
+                            {% elseif item.temperature >= 50 and item.temperature < 150 %}
+                                <span class="value attention-no-hover">Attention</span>
                             {% else %}
-                                <span class="danger-no-hover">Danger</span>
+                                <span class="value danger-no-hover">Danger</span>
                             {% endif %}
                         </div>
                         <div class="values" >
-                            {% if item.humidity >= 0 and item.humidity < 500 %}
+                            {% if item.humidity < 10 %}
                                 <span class="success-no-hover">Bonne</span>
-                            {% elseif item.humidity >= 500 and item.humidity < 1500 %}
+                            {% elseif item.humidity >= 10 and item.humidity < 25 %}
                                 <span class="warning-no-hover">Moyenne</span>
-                            {% elseif item.humidity >= 1500 and item.humidity < 4000 %}
-                                <span class="warning-no-hover">Attention</span>
+                            {% elseif item.humidity >= 25 and item.humidity < 75 %}
+                                <span class="attention-no-hover">Attention</span>
                             {% else %}
                                 <span class="danger-no-hover">Danger</span>
                             {% endif %}

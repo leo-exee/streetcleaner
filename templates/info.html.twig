@@ -12,12 +12,100 @@
 
 {% block body %}
     <div class="container">
+        <div class="content-two">
+            <div class="content">
+                <h1>Contribuer à l'échelle de votre rue à préserver la planète</h1>
+                <p>Assemblez votre propre station <span>"Atmos Road"</span> pour mesurer et comparer la <span>qualité de l'air près de chez vous</span>. Partagez vos résultats et tenter d'atteindre la <span>meilleure place dans le classement</span>.</p>
+                <p>Une expérience à la fois <span>ludique et instructive</span>, qui vous place au centre de l’observation, vous offrant la possibilité de <span>comprendre et d'entreprendre</span> pour mieux <span>préserver notre environnemennt</span>.</p>
 
-        <h1>Le projet "ATMOS ROAD"</h1>
-        <h2>C'est quoi ?</h2>
-        <h2>Comment ça marche ?</h2>
-        <h2>Rejoindre le programme</h2>
-        <h2>Ressources</h2>
 
+                {% if is_granted("IS_AUTHENTICATED") == false %}
+                    <form class="link" action="{{ path('app_login') }}">
+                        <button class="btn secondary" type="submit"><i class="fa-solid fa-right-to-bracket"></i> Nous rejoindre</button>
+                    </form>
+                {% endif %}
+
+
+            </div>
+
+            <img class="logo" src="assets/AR-round.png" alt="logo atmos road">
+        </div>
     </div>
+
+    <div class="bg primary-no-hover">
+        <div class="container">
+            <h2>Atmos Road : c'est quoi ?</h2>
+            <p>Le projet "Atmos Road" est une expérience collaborative et sociale, qui a pour but de récolter des informations sur la qualité de l'air de différent
+                points de prélèvement.</p>
+            <p>Pour cela, le projet se base sur un concept atypique : demander aux citoyens d'assembler leur propre station d'analyse de la qualité de l'air,
+                l'installer sur leur terrasse, à leur fenêtre ou dans leur jardin,
+                et de transférer les résultats près de chez eux sur un classement en ligne</p>
+            <p>Les données atmosphériques sont récupérées, regoupées par rues et classées selon les indices PM10 et PM2.5. Ainsi le projet devient à la fois
+                ludique avec l'objectif d'être le mieux classé mais aussi instructif, car il permet d'évaluer la qualité de l'air à une échelle assez précise.</p>
+
+            <h3>Les trois meilleurs rues du classement</h3>
+            <div class="ranking">
+                {% for item in items|slice(0, 3) %}
+                    <div class="item item-{{ loop.index }}">
+                        <span class="index">
+                            {{ loop.index }}
+                        </span>
+                        <span class="address">
+                            {{ item.adress }}
+                        </span>
+                        <div class="values" >
+                            {% if item.temperature < 20 %}
+                                <span class="success-no-hover">PM10 : {{ item.temperature }}</span>
+                            {% elseif item.temperature >= 20 and item.temperature < 50 %}
+                                <span class="warning-no-hover">PM10 : {{ item.temperature }}</span>
+                            {% elseif item.temperature >= 50 and item.temperature < 150 %}
+                                <span class="attention-no-hover">PM10 : {{ item.temperature }}</span>
+                            {% else %}
+                                <span class="danger-no-hover">PM10 : {{ item.temperature }}</span>
+                            {% endif %}
+                        </div>
+                        <div class="values" >
+                            {% if item.humidity < 10 %}
+                                <span class="success-no-hover">PM2.5 : {{ item.humidity }}</span>
+                            {% elseif item.humidity >= 10 and item.humidity < 25 %}
+                                <span class="warning-no-hover">PM2.5 : {{ item.humidity }}</span>
+                            {% elseif item.humidity >= 25 and item.humidity < 75 %}
+                                <span class="attention-no-hover">PM2.5 : {{ item.humidity }}</span>
+                            {% else %}
+                                <span class="danger-no-hover">PM2.5 : {{ item.humidity }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+                <form class="link" action="{{ path('app_login') }}">
+                    <button class="btn secondary" type="submit"><i class="fa-solid fa-plus"></i> Voir le reste du classement</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="bg">
+        <div class="container">
+            <h2>Comment rejoindre le programme ?</h2>
+            <p>Vous désirez participer au projet "Atmos Road" ? Contribuer à la préservation de la planète à votre échelle ? Améliorer la qualité de l'air dans votre rue, quartier ou résidence ?</p>
+                <p>Pour rejoindre le programme, rien de plus simple :
+                <a target="_blank" href="{{ path('app_register') }}">inscrivez-vous</a>
+                et suivez toutes les étapes de <a href="https://exastam.notion.site/Documentation-AtmosRoad-7205473bb6124c8db1633a6092c3f9b7">notre documentation <i class="fa-solid fa-arrow-up-right-from-square"></i></a>.</p>
+            <p>Le projet a été pensé pour être réalisable pour toute personne : chaque étape a été détaillé afin que n'importe qui, même qui
+            ne possède pas de compétence particulière en électronique ou en informatique, puisse assembler sa propore station "Atmos Road"</p>
+            <form class="link" target="_blank" action="document/doc.pdf">
+                <button class="btn secondary" type="submit"><i class="fa-solid fa-file-arrow-down"></i> Télécharger la documentation</button>
+            </form>
+        </div>
+    </div>
+
+    {% if is_granted("IS_AUTHENTICATED") == false %}
+        <footer>
+            <span>© AtmosRoad 2023</span>
+        </footer>
+    {% else %}
+        <div>
+            <br><br>
+        </div>
+    {% endif %}
 {% endblock %}
+

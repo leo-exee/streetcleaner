@@ -15,9 +15,30 @@
 
             <p>Nombre de station : <span>{{ user.devices|length }}</span></p>
 
-            <p>Moyenne du PM10 : <span>{{ temp ?? "??" }}</span></p>
+            {% if temp == 0 %}
+                <p>Moyenne du PM10 : <span class="grey-no-hover">{{ temp ?? "??" }}</span></p>
+            {% elseif temp < 20 %}
+                <p>Moyenne du PM10 : <span class="success-no-hover">{{ temp ?? "??" }}</span></p>
+            {% elseif temp >= 20 and temp < 50 %}
+                <p>Moyenne du PM10 : <span class="warning-no-hover">{{ temp ?? "??" }}</span></p>
+            {% elseif temp >= 50 and temp < 150 %}
+                <p>Moyenne du PM10 : <span class="attention-no-hover">{{ temp ?? "??" }}</span></p>
+            {% else %}
+                <p>Moyenne du PM10 : <span class="danger-no-hover">{{ temp ?? "??" }}</span></p>
+            {% endif %}
 
-            <p>Moyenne du PM2.5 : <span>{{ hum ?? "??" }}</span></p>
+            {% if hum == 0 %}
+                <p>Moyenne du PM10 : <span class="grey-no-hover">{{ hum ?? "??" }}</span></p>
+            {% elseif hum < 10 %}
+                <p>Moyenne du PM10 : <span class="success-no-hover">{{ hum ?? "??" }}</span></p>
+            {% elseif hum >= 10 and hum < 25 %}
+                <p>Moyenne du PM10 : <span class="warning-no-hover">{{ hum ?? "??" }}</span></p>
+            {% elseif hum >= 25 and hum < 75 %}
+                <p>Moyenne du PM10 : <span class="attention-no-hover">{{ hum ?? "??" }}</span></p>
+            {% else %}
+                <p>Moyenne du PM10 : <span class="danger-no-hover">{{ hum ?? "??" }}</span></p>
+            {% endif %}
+
         </div>
 
         <div class="save">
@@ -33,7 +54,7 @@
             <a class="btn primary" href="{{ path('app_device_new') }}"><i class="fa-solid fa-plus"></i> Ajouter un appareil</a>
         </div>
 
-        <div class="list" style="margin-bottom: 100px; border-top: none">
+        <div class="list" style="border-top: none">
             {% if devices|length > 0 %}
                 {% for device in devices %}
                     <div class="item">

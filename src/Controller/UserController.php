@@ -39,8 +39,8 @@ class UserController extends AbstractController
                 return $this->render('user/show.html.twig', [
                     'user' => $user,
                     'devices' => $devices,
-                    'temp' => $temp,
-                    'hum' => $hum
+                    'temp' => round($temp, 2),
+                    'hum' => round($hum, 2)
                 ]);
             } else{
                 return $this->render('user/show.html.twig', [
