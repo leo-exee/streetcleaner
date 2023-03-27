@@ -14,11 +14,9 @@
     <div class="container">
         <div class="content-two">
             <div class="content">
-                <h1>Contribuer à l'échelle de votre rue à préserver la planète</h1>
-                <p>Assemblez votre propre station <span>"Atmos Road"</span> pour mesurer et comparer la <span>qualité de l'air près de chez vous</span>. Partagez vos résultats et tenter d'atteindre la <span>meilleure place dans le classement</span>.</p>
-                <p>Une expérience à la fois <span>ludique et instructive</span>, qui vous place au centre de l’observation, vous offrant la possibilité de <span>comprendre et d'entreprendre</span> pour mieux <span>préserver notre environnemennt</span>.</p>
-
-
+                <h1>Préserver la planète à l'échelle de votre rue grâce à "Atmos Road"</h1>
+                <p>Prenez part à la lutte pour un air plus sain en assemblant votre propre station <span>"Atmos Road"</span> pour mesurer et comparer la qualité de l'air <span>près de chez vous</span>. Partagez vos résultats et grimpez au sommet du classement pour devenir le <span>champion de votre quartier</span>.</p>
+                <p>Cette expérience à la fois <span>ludique et instructive</span> vous place au centre de l'observation de l'environnement, vous permettant de comprendre et d'entreprendre pour <span>préserver notre planète</span>. Avec "Atmos Road", vous pouvez agir concrètement pour <span>améliorer la qualité de l'air</span> dans votre rue et dans votre ville.</p>
                 {% if is_granted("IS_AUTHENTICATED") == false %}
                     <form class="link" action="{{ path('app_login') }}">
                         <button class="btn secondary" type="submit"><i class="fa-solid fa-right-to-bracket"></i> Nous rejoindre</button>
@@ -34,14 +32,10 @@
 
     <div class="bg primary-no-hover">
         <div class="container">
-            <h2>Atmos Road : c'est quoi ?</h2>
-            <p>Le projet "Atmos Road" est une expérience collaborative et sociale, qui a pour but de récolter des informations sur la qualité de l'air de différent
-                points de prélèvement.</p>
-            <p>Pour cela, le projet se base sur un concept atypique : demander aux citoyens d'assembler leur propre station d'analyse de la qualité de l'air,
-                l'installer sur leur terrasse, à leur fenêtre ou dans leur jardin,
-                et de transférer les résultats près de chez eux sur un classement en ligne</p>
-            <p>Les données atmosphériques sont récupérées, regoupées par rues et classées selon les indices PM10 et PM2.5. Ainsi le projet devient à la fois
-                ludique avec l'objectif d'être le mieux classé mais aussi instructif, car il permet d'évaluer la qualité de l'air à une échelle assez précise.</p>
+            <h2>Atmos Road : qu'est-ce que c'est ?</h2>
+            <p>Atmos Road est un projet collaboratif et social visant à recueillir des informations sur la qualité de l'air à partir de différents points de prélèvement.</p>
+            <p>Le concept original du projet consiste à demander aux citoyens d'assembler leur propre station d'analyse de la qualité de l'air, de l'installer sur leur terrasse, à leur fenêtre ou dans leur jardin, et de partager les résultats de leurs mesures sur un classement en ligne.</p>
+            <p>Les données atmosphériques collectées sont ensuite regroupées par rues et classées en fonction des indices PM10 et PM2.5. Ainsi, le projet est à la fois ludique, avec pour objectif d'obtenir le meilleur classement possible, et éducatif, car il permet de mieux comprendre la qualité de l'air à une échelle assez précise.</p>
 
             <h3>Les trois meilleurs rues du classement</h3>
             <div class="ranking">
@@ -86,12 +80,9 @@
     <div class="bg">
         <div class="container">
             <h2>Comment rejoindre le programme ?</h2>
-            <p>Vous désirez participer au projet "Atmos Road" ? Contribuer à la préservation de la planète à votre échelle ? Améliorer la qualité de l'air dans votre rue, quartier ou résidence ?</p>
-                <p>Pour rejoindre le programme, rien de plus simple :
-                <a target="_blank" href="{{ path('app_register') }}">inscrivez-vous</a>
-                et suivez toutes les étapes de <a href="https://exastam.notion.site/Documentation-AtmosRoad-7205473bb6124c8db1633a6092c3f9b7">notre documentation <i class="fa-solid fa-arrow-up-right-from-square"></i></a>.</p>
-            <p>Le projet a été pensé pour être réalisable pour toute personne : chaque étape a été détaillé afin que n'importe qui, même qui
-            ne possède pas de compétence particulière en électronique ou en informatique, puisse assembler sa propore station "Atmos Road"</p>
+            <p>Vous souhaitez participer au projet "Atmos Road" et contribuer à la préservation de la planète à votre échelle en améliorant la qualité de l'air dans votre rue, quartier ou résidence ?</p>
+            <p>Pour rejoindre le programme, rien de plus simple : <a target="_blank" href="{{ path('app_register') }}">inscrivez-vous</a> et suivez toutes les étapes détaillées dans <a href="https://exastam.notion.site/Documentation-AtmosRoad-7205473bb6124c8db1633a6092c3f9b7">notre documentation <i class="fa-solid fa-arrow-up-right-from-square"></i></a>.</p>
+            <p>Le projet a été conçu pour être réalisable par n'importe qui, même ceux qui n'ont pas de compétences particulières en électronique ou en informatique. Chaque étape est détaillée pour que vous puissiez assembler votre propre station "Atmos Road".</p>
             {% if is_granted("IS_AUTHENTICATED") == false %}
                 <form class="link" target="_blank" action="document/doc.pdf">
                     <button class="btn secondary" type="submit"><i class="fa-solid fa-file-arrow-down"></i> Télécharger la documentation</button>
