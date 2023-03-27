@@ -2,59 +2,7 @@
 @use 'nav';
 @use 'autocomplete';
 @use 'info';
-
-#loader {
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 4;
-  position: fixed;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #fff;
-  transition: 0.2s ease opacity;
-}
-
-#loader-animation {
-  width: 100px;
-  height: 100px;
-  border: 10px solid variable.$primary;
-  border-radius: 50%;
-  border-top: 10px solid #ffffff00;
-  -webkit-animation: spin 2s cubic-bezier(0.67, 0.4, 0.34, 0.64) infinite;
-  animation: spin 2s cubic-bezier(0.67, 0.4, 0.34, 0.64) infinite;
-}
-
-@-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* Add animation to "page content" */
-.animate-bottom {
-  position: relative;
-  -webkit-animation-name: animatebottom;
-  -webkit-animation-duration: 1s;
-  animation-name: animatebottom;
-  animation-duration: 1s
-}
-
-@-webkit-keyframes animatebottom {
-  from { bottom:-100px; opacity:0 }
-  to { bottom:0; opacity:1 }
-}
-
-@keyframes animatebottom {
-  from{ bottom:-100px; opacity:0 }
-  to{ bottom:0; opacity:1 }
-}
+@use 'loader';
 
 * {
   font-family: 'Source Sans Pro', sans-serif;
@@ -104,6 +52,7 @@ html, body {
   i {
     margin: 0;
   }
+  text-decoration: none;
   border: none;
   display: flex;
   height: 30px;
@@ -377,6 +326,7 @@ form {
       margin-top: 10px;
       width: 100%;
       max-width: 300px;
+      text-decoration: none;
     }
   }
 

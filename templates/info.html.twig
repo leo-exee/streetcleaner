@@ -92,20 +92,16 @@
                 et suivez toutes les étapes de <a href="https://exastam.notion.site/Documentation-AtmosRoad-7205473bb6124c8db1633a6092c3f9b7">notre documentation <i class="fa-solid fa-arrow-up-right-from-square"></i></a>.</p>
             <p>Le projet a été pensé pour être réalisable pour toute personne : chaque étape a été détaillé afin que n'importe qui, même qui
             ne possède pas de compétence particulière en électronique ou en informatique, puisse assembler sa propore station "Atmos Road"</p>
-            <form class="link" target="_blank" action="document/doc.pdf">
-                <button class="btn secondary" type="submit"><i class="fa-solid fa-file-arrow-down"></i> Télécharger la documentation</button>
-            </form>
+            {% if is_granted("IS_AUTHENTICATED") == false %}
+                <form class="link" target="_blank" action="document/doc.pdf">
+                    <button class="btn secondary" type="submit"><i class="fa-solid fa-file-arrow-down"></i> Télécharger la documentation</button>
+                </form>
+            {% endif %}
         </div>
     </div>
 
-    {% if is_granted("IS_AUTHENTICATED") == false %}
-        <footer>
-            <span>© AtmosRoad 2023</span>
-        </footer>
-    {% else %}
-        <div>
-            <br><br>
-        </div>
-    {% endif %}
+    <footer>
+        <span>© AtmosRoad 2023</span>
+    </footer>
 {% endblock %}
 
