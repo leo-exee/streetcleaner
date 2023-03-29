@@ -119,7 +119,7 @@ class DeviceController extends AbstractController
     }
 
     #[Route('/add-data/{id}/{temp}/{hum}', name: 'app_device_insertdata', methods: ['GET', 'POST'])]
-    public function add_data(Request $request, DeviceRepository $deviceRepository): Response
+    public function addData(Request $request, DeviceRepository $deviceRepository): Response
     {
         $id = $request->attributes->get('id');
         $temp = $request->attributes->get('temp');
