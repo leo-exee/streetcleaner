@@ -125,8 +125,8 @@ class DeviceController extends AbstractController
         $temp = $request->attributes->get('temp');
         $hum = $request->attributes->get('hum');
 
-        if ($deviceRepository->findById($id)) {
-            $device = $deviceRepository->findById($id)[0];
+        if ($deviceRepository->findOneBy(['device' => $id])) {
+            $device = $deviceRepository->findOneBy(['device' => $id]);
             $device->setTemperature($temp);
             $device->setHumidity($hum);
             $deviceRepository->save($device, true);
