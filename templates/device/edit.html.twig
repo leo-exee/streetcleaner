@@ -7,7 +7,7 @@
     <div class="container center">
         <h1>Modifier votre appareil</h1>
         <form>
-            <label >Identifiant de votre appareil</label>
+            <label >Identifiant de votre appareil <i class="fa-solid fa-lock"></i></label>
             <input disabled type="text"  value="{{ device.device }}">
         </form>
         {{ include('device/_form.html.twig', {'button_label': 'Mettre à jour'}) }}

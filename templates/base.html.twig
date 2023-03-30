@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}Bienvenue{% endblock %}</title>
         <link rel="icon" href="/assets/logo.ico">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
@@ -24,11 +24,22 @@
 
     {{ component('nav', { path: current_path }) }}
 
-    <div class="nav">
-        <div class="container">
-            <img src="/assets/logo.png" alt="Logo">
+    {% if is_granted("IS_AUTHENTICATED") %}
+        <div class="nav">
+            <div class="container">
+                <img src="/assets/logo.png" alt="Logo">
+            </div>
         </div>
-    </div>
+    {% else %}
+        <div class="nav">
+            <div class="container" style="justify-content: space-between;">
+                <img src="/assets/logo.png" alt="Logo" style="padding-bottom: 10px;">
+                <a class="item" href="{{ path('app_login') }}"><i class="fa-solid fa-circle-user"></i> Se connecter</a>
+            </div>
+        </div>
+    {% endif %}
+
+
 
         {% block body %}{% endblock %}
     </body>

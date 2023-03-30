@@ -18,7 +18,7 @@
                 <p>Prenez part à la lutte pour un air plus sain en assemblant votre propre station <span>"Atmos Road"</span> pour mesurer et comparer la qualité de l'air <span>près de chez vous</span>. Partagez vos résultats et grimpez au sommet du classement pour devenir le <span>champion de votre quartier</span>.</p>
                 <p>Cette expérience à la fois <span>ludique et instructive</span> vous place au centre de l'observation de l'environnement, vous permettant de comprendre et d'entreprendre pour <span>préserver notre planète</span>. Avec "Atmos Road", vous pouvez agir concrètement pour <span>améliorer la qualité de l'air</span> dans votre rue et dans votre ville.</p>
                 {% if is_granted("IS_AUTHENTICATED") == false %}
-                    <form class="link" action="{{ path('app_login') }}">
+                    <form class="link" action="{{ path('app_register') }}">
                         <button class="btn secondary" type="submit"><i class="fa-solid fa-right-to-bracket"></i> Nous rejoindre</button>
                     </form>
                 {% endif %}
