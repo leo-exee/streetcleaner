@@ -85,7 +85,7 @@
             <p>Le projet a été conçu pour être réalisable par n'importe qui, même ceux qui n'ont pas de compétences particulières en électronique ou en informatique. Chaque étape est détaillée pour que vous puissiez assembler votre propre station "Atmos Road".</p>
             {% if is_granted("IS_AUTHENTICATED") == false %}
                 <form class="link" target="_blank" action="document/doc.pdf">
-                    <button class="btn secondary" type="submit"><i class="fa-solid fa-file-arrow-down"></i> Télécharger la documentation</button>
+                    <button class="btn secondary" type="submit"><a href="{{ path('app_register') }}"><i class="fa-solid fa-file-eye"></i> Voir la documentation</a></button>
                 </form>
             {% endif %}
         </div>
