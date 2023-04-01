@@ -24,17 +24,24 @@
 
     {{ component('nav', { path: current_path }) }}
 
+
     {% if is_granted("IS_AUTHENTICATED") %}
-        <div class="nav">
-            <div class="container">
-                <img src="/assets/logo.png" alt="Logo">
+            <div class="nav">
+                <div class="container">
+                    <img src="/assets/logo.png" alt="Logo">
+                </div>
             </div>
-        </div>
-    {% else %}
+    {% elseif (current_path == 'app_project_info') %}
         <div class="nav">
             <div class="container" style="justify-content: space-between;">
                 <img src="/assets/logo.png" alt="Logo" style="padding-bottom: 10px;">
                 <a class="item" href="{{ path('app_login') }}"><i class="fa-solid fa-circle-user"></i> Se connecter</a>
+            </div>
+        </div>
+    {% else %}
+        <div class="nav">
+            <div class="container">
+                <img src="/assets/logo.png" alt="Logo">
             </div>
         </div>
     {% endif %}
