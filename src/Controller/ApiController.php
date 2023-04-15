@@ -24,6 +24,7 @@ class ApiController extends AbstractController
         if($encoderService->isPasswordValid($user, $password)) {
 
             $data = array(
+                'id' => $user->getId(),
                 'email' => $request->get('email'),
                 'password' => $request->get('password'),
             );
