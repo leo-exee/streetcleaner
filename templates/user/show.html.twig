@@ -15,7 +15,10 @@
 
             <p>Nombre de station : <span>{{ user.devices|length }}</span></p>
 
-            {% if temp == 0 %}
+
+            {% if temp is not defined %}
+                <p>Moyenne du PM10 : <span class="grey-no-hover">{{ temp ?? "??" }}</span></p>
+            {% elseif temp == 0 %}
                 <p>Moyenne du PM10 : <span class="grey-no-hover">{{ temp ?? "??" }}</span></p>
             {% elseif temp < 20 %}
                 <p>Moyenne du PM10 : <span class="success-no-hover">{{ temp ?? "??" }}</span></p>
@@ -27,7 +30,9 @@
                 <p>Moyenne du PM10 : <span class="danger-no-hover">{{ temp ?? "??" }}</span></p>
             {% endif %}
 
-            {% if hum == 0 %}
+            {% if hum is not defined %}
+                <p>Moyenne du PM2.5 : <span class="grey-no-hover">{{ hum ?? "??" }}</span></p>
+            {% elseif hum == 0 %}
                 <p>Moyenne du PM2.5 : <span class="grey-no-hover">{{ hum ?? "??" }}</span></p>
             {% elseif hum < 10 %}
                 <p>Moyenne du PM2.5 : <span class="success-no-hover">{{ hum ?? "??" }}</span></p>
