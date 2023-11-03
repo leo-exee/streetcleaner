@@ -1,15 +1,14 @@
 <?php
 namespace App\Controller;
 
-use App\Entity\Device;
 use App\Repository\DeviceRepository;
-use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class HomeController extends AbstractController
 {
@@ -23,6 +22,10 @@ class HomeController extends AbstractController
         $this->em = $em;
     }
 
+    /**
+     * @param DeviceRepository $deviceRepository
+     * @return Response
+     */
     #[Route('/home', name: "app_project_info")]
     public function home(DeviceRepository $deviceRepository) {
 
@@ -80,6 +83,12 @@ class HomeController extends AbstractController
             ]);
     }
 
+    /**
+     * @param DeviceRepository $deviceRepository
+     * @return RedirectResponse|Response
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     */
     #[Route('/', name:'app_index')]
     public function index(DeviceRepository $deviceRepository) {
 
@@ -141,6 +150,11 @@ class HomeController extends AbstractController
         ]);
     }
 
+    /**
+     * @param $address
+     * @param DeviceRepository $deviceRepository
+     * @return Response
+     */
     #[Route('/detail/{address}', name: 'app_address_detail')]
     public function addressDetail($address, DeviceRepository $deviceRepository){
 

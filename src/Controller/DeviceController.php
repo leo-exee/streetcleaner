@@ -5,7 +5,10 @@ namespace App\Controller;
 use App\Entity\Device;
 use App\Form\DeviceType;
 use App\Repository\DeviceRepository;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,6 +16,12 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/device')]
 class DeviceController extends AbstractController
 {
+    /**
+     * @param DeviceRepository $deviceRepository
+     * @return Response
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     */
     #[Route('/', name: 'app_device_index', methods: ['GET'])]
     public function index(DeviceRepository $deviceRepository): Response
     {
@@ -26,6 +35,13 @@ class DeviceController extends AbstractController
 
     }
 
+    /**
+     * @param Request $request
+     * @param DeviceRepository $deviceRepository
+     * @return Response
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     */
     #[Route('/new', name: 'app_device_new', methods: ['GET', 'POST'])]
     public function new(Request $request, DeviceRepository $deviceRepository): Response
     {
@@ -63,6 +79,14 @@ class DeviceController extends AbstractController
 
     }
 
+    /**
+     * @param Request $request
+     * @param Device $device
+     * @param DeviceRepository $deviceRepository
+     * @return Response
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     */
     #[Route('/{id}/edit', name: 'app_device_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Device $device, DeviceRepository $deviceRepository): Response
     {
@@ -87,6 +111,13 @@ class DeviceController extends AbstractController
 
     }
 
+    /**
+     * @param Request $request
+     * @param Device $device
+     * @return RedirectResponse|Response
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     */
     #[Route('/{id}/delete', name: 'app_device_remove')]
     public function remove (Request $request, Device $device)
     {
@@ -102,6 +133,14 @@ class DeviceController extends AbstractController
         return $this->redirectToRoute('app_user_show', ['id' => $this->getUser()->getId()], Response::HTTP_SEE_OTHER);
     }
 
+    /**
+     * @param Request $request
+     * @param Device $device
+     * @param DeviceRepository $deviceRepository
+     * @return Response
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     */
     #[Route('/{id}', name: 'app_device_delete', methods: ['POST'])]
     public function delete(Request $request, Device $device, DeviceRepository $deviceRepository): Response
     {
@@ -118,6 +157,11 @@ class DeviceController extends AbstractController
 
     }
 
+    /**
+     * @param Request $request
+     * @param DeviceRepository $deviceRepository
+     * @return Response
+     */
     #[Route('/add-data/{id}/{temp}/{hum}', name: 'app_device_insertdata', methods: ['GET', 'POST'])]
     public function addData(Request $request, DeviceRepository $deviceRepository): Response
     {

@@ -6,7 +6,10 @@ use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\DeviceRepository;
 use App\Repository\UserRepository;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,8 +17,13 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/user')]
 class UserController extends AbstractController
 {
-
-
+    /**
+     * @param User $user
+     * @param DeviceRepository $deviceRepository
+     * @return Response
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     */
     #[Route('/{id}', name: 'app_user_show', methods: ['GET'])]
     public function show(User $user, DeviceRepository $deviceRepository): Response
     {
@@ -54,6 +62,14 @@ class UserController extends AbstractController
         return $this->redirectToRoute('app_index', [], Response::HTTP_SEE_OTHER);
     }
 
+    /**
+     * @param Request $request
+     * @param User $user
+     * @param UserRepository $userRepository
+     * @return Response
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     */
     #[Route('/{id}/edit', name: 'app_user_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, User $user, UserRepository $userRepository): Response
     {
@@ -77,6 +93,13 @@ class UserController extends AbstractController
 
     }
 
+    /**
+     * @param Request $request
+     * @param User $user
+     * @return RedirectResponse|Response
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     */
     #[Route('{id}/delete', name: 'app_user_remove')]
     public function remove (Request $request, User $user)
     {
@@ -91,6 +114,14 @@ class UserController extends AbstractController
         return $this->redirectToRoute('app_user_show', ['id' => $this->getUser()->getId()], Response::HTTP_SEE_OTHER);
     }
 
+    /**
+     * @param Request $request
+     * @param User $user
+     * @param UserRepository $userRepository
+     * @return Response
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     */
     #[Route('/{id}', name: 'app_user_delete', methods: ['POST'])]
     public function delete(Request $request, User $user, UserRepository $userRepository): Response
     {

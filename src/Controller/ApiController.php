@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
 use App\Repository\DeviceRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,6 +14,12 @@ use Symfony\Component\Routing\Annotation\Route;
 class ApiController extends AbstractController
 {
 
+    /**
+     * @param Request $request
+     * @param UserRepository $userRepository
+     * @param UserPasswordHasherInterface $encoderService
+     * @return Response
+     */
     #[Route('/login', name: 'api_login', methods: ['POST'])]
     public function login(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $encoderService): Response {
 
@@ -37,6 +42,13 @@ class ApiController extends AbstractController
         return $this->json([false]);
     }
 
+    /**
+     * @param Request $request
+     * @param UserRepository $userRepository
+     * @param DeviceRepository $deviceRepository
+     * @param UserPasswordHasherInterface $encoderService
+     * @return Response
+     */
     #[Route('/get', name: 'api_get_datas', methods: ['POST'])]
     public function get(Request $request, UserRepository $userRepository, DeviceRepository $deviceRepository, UserPasswordHasherInterface $encoderService): Response {
 
